@@ -29,7 +29,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addExpense(input: AddExpenseInput!): Expense!
+    addExpense(input: AddExpenseInput!): AddExpenseResponse!
   }
 
   input AddExpenseInput {
