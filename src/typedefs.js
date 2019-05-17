@@ -2,9 +2,9 @@ const { gql } = require('apollo-server-micro');
 
 const typeDefs = gql`
   type Expense {
-    amount: String!
+    amount: Float!
     date: String!
-    id: Int!
+    id: ID!
     paymentMethod: String!
     type: String!
   }
@@ -33,7 +33,7 @@ const typeDefs = gql`
   }
 
   input AddExpenseInput {
-    amount: String!
+    amount: Float!
     date: String!
     paymentMethod: String!
     type: String!
