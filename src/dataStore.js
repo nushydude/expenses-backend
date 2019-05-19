@@ -1,9 +1,3 @@
-const expenses = [];
-const paymentMethods = [];
-const types = [];
-
-module.exports = {
-  expenses,
-  types,
-  paymentMethods,
-};
+export const expenses = [];
+export const paymentMethods = [];
+export const types = [];

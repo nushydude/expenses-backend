@@ -1,7 +1,5 @@
-const { expenses } = require('../dataStore');
+import { expenses } from '../dataStore';
 
-function getExpenses() {
+export default function getExpenses() {
   return expenses;
 }
-
-module.exports = getExpenses;

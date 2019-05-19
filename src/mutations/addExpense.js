@@ -1,7 +1,7 @@
-const cuid = require('cuid');
-const { expenses } = require('../dataStore');
+import cuid from 'cuid';
+import { expenses } from '../dataStore';
 
-function addExpense(_, { input }) {
+export default function addExpense(_, { input }) {
   const expense = { ...input, id: cuid() };
 
   expenses.push(expense);
@@ -11,5 +11,3 @@ function addExpense(_, { input }) {
     error: null,
   };
 }
-
-module.exports = addExpense;

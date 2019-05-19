@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "now-build": "babel-node ./index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.4",
     "apollo-server-micro": "^2.4.8",
     "cuid": "^2.1.6",
     "graphql": "^14.1.1"

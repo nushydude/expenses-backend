@@ -1,8 +1,8 @@
-const { ApolloServer, gql } = require('apollo-server-micro');
-const typeDefs = require('./src/typedefs');
-const getExpenses = require('./src/queries/getExpenses');
-const addExpense = require('./src/mutations/addExpense');
-const getEnvVars = require('./src/queries/getEnvVars');
+import { ApolloServer, gql } from 'apollo-server-micro';
+import typeDefs from './src/typedefs';
+import getExpenses from './src/queries/getExpenses';
+import addExpense from './src/mutations/addExpense';
+import getEnvVars from './src/queries/getEnvVars';
 
 const resolvers = {
   Query: {
@@ -28,4 +28,4 @@ const server = new ApolloServer({
   playground: true,
 });
 
-module.exports = server.createHandler();
+export default server.createHandler();
