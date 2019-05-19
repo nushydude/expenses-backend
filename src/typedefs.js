@@ -9,11 +9,23 @@ const typeDefs = gql`
     type: String!
   }
 
+  type EnvVars {
+    secret: String
+  }
+
   type Query {
-    getExpenses(input: GetExpensesInput!): [Expense]
+    getExpenses(input: GetExpensesInput!): [Expense]!
+    getEnvVars(input: GetEnvVarsInput!): EnvVars!
   }
 
   input GetExpensesInput {
+    """
+    dummy field.
+    """
+    _: Boolean
+  }
+
+  input GetEnvVarsInput {
     """
     dummy field.
     """
