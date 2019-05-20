@@ -1,17 +1,12 @@
 import { ApolloServer, gql } from 'apollo-server-micro';
 import typeDefs from './src/typedefs';
-import getExpenses from './src/queries/getExpenses';
-import addExpense from './src/mutations/addExpense';
-import getEnvVars from './src/queries/getEnvVars';
+import * as Query from './src/queries';
+import * as Mutation from './src/mutations';
+import { getUserByJWT } from './src/utils/getUserByJWT';
 
 const resolvers = {
-  Query: {
-    getExpenses,
-    getEnvVars,
-  },
-  Mutation: {
-    addExpense,
-  },
+  Query,
+  Mutation,
   MutationResponse: {
     __resolveType: () => {
       throw new Error(
@@ -26,6 +21,11 @@ const server = new ApolloServer({
   resolvers,
   introspection: true,
   playground: true,
+  context: async ({ req }) => {
+    const user = await getUserByJWT(req.headers.authorization);
+
+    return { user };
+  },
 });
 
 export default server.createHandler();

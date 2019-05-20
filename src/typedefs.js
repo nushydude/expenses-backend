@@ -2,11 +2,11 @@ const { gql } = require('apollo-server-micro');
 
 const typeDefs = gql`
   type Expense {
-    amount: Float!
-    date: String!
-    id: ID!
-    paymentMethod: String!
-    type: String!
+    amount: Float
+    date: String
+    id: ID
+    paymentMethod: String
+    type: String
   }
 
   type EnvVars {

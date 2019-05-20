@@ -1,4 +1,4 @@
-export default function getEnvVars() {
+export function getEnvVars() {
   const secret = process.env.SECRET;
 
   return { secret };

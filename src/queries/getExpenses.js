@@ -1,5 +1,5 @@
 import { expenses } from '../dataStore';
 
-export default function getExpenses() {
+export function getExpenses() {
   return expenses;
 }
