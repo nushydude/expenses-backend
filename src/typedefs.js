@@ -1,6 +1,6 @@
-const { gql } = require('apollo-server-micro');
+import { gql } from 'apollo-server-micro';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type Expense {
     amount: Float
     date: String
@@ -56,5 +56,3 @@ const typeDefs = gql`
     error: Error
   }
 `;
-
-export default typeDefs;
