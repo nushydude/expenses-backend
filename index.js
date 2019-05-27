@@ -1,4 +1,5 @@
 import { ApolloServer, gql } from 'apollo-server-micro';
+import cors from 'micro-cors';
 import * as Mutation from './src/mutations';
 import * as Query from './src/queries';
 import { typeDefs } from './src/typedefs';
@@ -28,4 +29,13 @@ const server = new ApolloServer({
   },
 });
 
-export default server.createHandler();
+export default cors({
+  allowMethods: ['POST', 'GET', 'OPTIONS'],
+})((req, res) => {
+  if (req.method === 'OPTIONS') {
+    res.end();
+    return;
+  }
+
+  return server.createHandler()(req, res);
+});
