@@ -1,5 +1,5 @@
 import cuid from 'cuid';
-import { expenses } from '../dataStore';
+import { expenses } from '../../../dataStore';
 
 export function addExpense(_, { input }) {
   const expense = { ...input, id: cuid() };

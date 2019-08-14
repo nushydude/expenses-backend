@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "now-build": "babel-node ./index.js"
+    "now-build": "yarn babel-node ./index.js"
   },
   "author": "",
   "license": "ISC",
