@@ -1,58 +1,43 @@
-import { gql } from 'apollo-server-micro';
+// @flow
+import { DateTimeScalar } from '@saeris/graphql-scalars';
+import { typeDef as EnvVars } from './schema/EnvVars';
+import { typeDef as Expense } from './schema/Expense';
+import { Error, MutationResponse } from './helpers';
+import { rootMutation } from './rootMutation';
+import { rootQuery } from './rootQuery';
 
-export const typeDefs = gql`
-  type Expense {
-    amount: Float
-    date: String
-    id: ID
-    paymentMethod: String
-    type: String
-  }
-
-  type EnvVars {
-    secret: String
-  }
-
+const rootSchema = /* GraphQL */ `
   type Query {
-    getExpenses(input: GetExpensesInput!): [Expense]!
-    getEnvVars(input: GetEnvVarsInput!): EnvVars!
-  }
-
-  input GetExpensesInput {
-    """
-    dummy field.
-    """
+    # TODO add explanation
+    # dummy resolver to allow empty type
     _: Boolean
-  }
-
-  input GetEnvVarsInput {
-    """
-    dummy field.
-    """
-    _: Boolean
-  }
-
-  type Error {
-    message: String!
-  }
-
-  interface MutationResponse {
-    error: Error
   }
 
   type Mutation {
-    addExpense(input: AddExpenseInput!): AddExpenseResponse!
+    # TODO add explanation
+    # dummy resolver to allow empty type
+    _: Boolean
   }
 
-  input AddExpenseInput {
-    amount: Float!
-    date: String!
-    paymentMethod: String!
-    type: String!
-  }
-
-  type AddExpenseResponse implements MutationResponse {
-    expense: Expense
-    error: Error
+  schema {
+    query: Query
+    mutation: Mutation
   }
 `;
+
+// $FlowFixMe
+export const typeDefs = [
+  ...Object.values(rootMutation),
+  ...Object.values(rootQuery),
+]
+
+  // extract colocated resolver type defs
+  // $FlowFixMe - ignoring error above marks resolver as `mixed`
+  .map(resolver => resolver.typeDef)
+
+  // legacy resolvers do not have colocated typedefs, so filter out undefined
+  .filter(Boolean)
+
+  // add our GraphQL type defs, as there's no resolver they can attach to
+  .concat([EnvVars, Expense, DateTimeScalar, Error, MutationResponse])
+  .concat(rootSchema);

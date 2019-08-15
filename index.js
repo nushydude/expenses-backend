@@ -1,3 +1,4 @@
+// @flow
 import cors from 'micro-cors';
 import { createHandler } from './src/graphql/createHandler';
 
