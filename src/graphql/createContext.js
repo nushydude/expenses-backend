@@ -1,5 +1,5 @@
 // @flow
-// import { getUserByJWT } from './utils';
+import { getUserByJWT } from './utils';
 
 export const createContext = async ({ req }) => {
   const jwt = req.headers.authorization;
