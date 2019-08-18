@@ -1,4 +1,4 @@
-// @flow
+
 import { DateTime } from '@saeris/graphql-scalars';
 import * as Mutation from './mutations';
 import * as Query from './queries';

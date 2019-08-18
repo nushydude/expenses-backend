@@ -1,4 +1,4 @@
-// @flow
+
 import * as expenseMutations from './mutations/Expense';
 
 export const rootMutation = {

@@ -1,4 +1,4 @@
-// @flow
+
 import { EnvVars } from './schema/EnvVars';
 import { Expense } from './schema/Expense';
 

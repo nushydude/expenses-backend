@@ -1,4 +1,4 @@
-// @flow
+
 export const Expense = {};
 
 export const typeDef = /* GraphQL */ `

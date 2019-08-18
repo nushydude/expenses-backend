@@ -1,7 +1,7 @@
-// @flow
-import { expenses } from '../../../dataStore';
 
-export function getExpenses() {
+export async function getExpenses(_, args, ctx) {
+  const expenses = await ctx.db.Expense.find({});
+
   return expenses;
 }
 

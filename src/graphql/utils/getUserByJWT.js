@@ -1,4 +1,4 @@
-// @flow
+
 import cuid from 'cuid';
 
 export async function getUserByJWT(jwt) {

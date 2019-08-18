@@ -1,4 +1,4 @@
-// @flow
+
 import { ApolloServer } from 'apollo-server-micro';
 import { createContext } from './createContext';
 import { resolvers } from './resolvers';

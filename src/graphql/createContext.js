@@ -1,5 +1,6 @@
-// @flow
+
 import { getUserByJWT } from './utils';
+import { createContextModels } from '../mongoose/createContextModels';
 
 export const createContext = async ({ req }) => {
   const jwt = req.headers.authorization;
@@ -10,5 +11,8 @@ export const createContext = async ({ req }) => {
     user = await getUserByJWT(req.headers.authorization);
   }
 
-  return { user };
+  return { 
+    db: createContextModels(),
+    user,
+  };
 };

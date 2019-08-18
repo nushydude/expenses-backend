@@ -1,4 +1,4 @@
-// @flow
+
 import * as envVarsQueries from './queries/EnvVars';
 import * as expenseQueries from './queries/Expense';
 

@@ -1,6 +1,9 @@
-// @flow
+
 import cors from 'micro-cors';
 import { createHandler } from './src/graphql/createHandler';
+import { connect } from './src/mongoose';
+
+connect();
 
 export default cors({
   allowMethods: ['POST', 'GET', 'OPTIONS'],
@@ -10,5 +13,6 @@ export default cors({
     return;
   }
 
+  // eslint-disable-next-line consistent-return
   return createHandler()(req, res);
 });
