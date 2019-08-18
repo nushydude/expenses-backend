@@ -1,4 +1,3 @@
-
 import { getUserByJWT } from './utils';
 import { createContextModels } from '../mongoose/createContextModels';
 
@@ -11,7 +10,7 @@ export const createContext = async ({ req }) => {
     user = await getUserByJWT(req.headers.authorization);
   }
 
-  return { 
+  return {
     db: createContextModels(),
     user,
   };

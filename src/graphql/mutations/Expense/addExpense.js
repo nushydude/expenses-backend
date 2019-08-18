@@ -12,7 +12,7 @@ export async function addExpense(_, { input }, ctx) {
       error: {
         message: error.message,
       },
-    }
+    };
   }
 }
 

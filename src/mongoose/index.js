@@ -1,4 +1,3 @@
-
 import mongoose from 'mongoose';
 import { handleConnectionError } from './handleConnectionError';
 
@@ -10,7 +9,7 @@ export const connect = async () => {
 
     mongoose.connection.on('error', handleConnectionError);
 
-    mongoose.set('debug', true);
+    mongoose.set('debug', process.env.NODE_ENV === 'development');
   } catch (error) {
     handleConnectionError(error);
   }

@@ -1,4 +1,3 @@
-
 export async function getExpenses(_, args, ctx) {
   const expenses = await ctx.db.Expense.find({});
 

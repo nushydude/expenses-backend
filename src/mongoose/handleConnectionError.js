@@ -1,4 +1,3 @@
-
-export const handleConnectionError = (error) => {
+export const handleConnectionError = error => {
   console.log('handleConnectionError:', error.message);
 };

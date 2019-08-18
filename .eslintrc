@@ -1,7 +1,10 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb"],
-  "plugins": ["flowtype"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "plugins": ["flowtype", "prettier"],
   "rules": {
     "prettier/prettier": "error",
     "linebreak-style": 0,

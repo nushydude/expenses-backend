@@ -1,4 +1,3 @@
-
 export const typeDef = /* GraphQL */ `
   type Error {
     id: ID!

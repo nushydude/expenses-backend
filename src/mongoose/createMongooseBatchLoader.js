@@ -11,7 +11,7 @@ export function createMongooseBatchLoader(connector) {
 
     // use sift.js to filter our results in memory using the exact same queries to
     // emulate a response for each query that was passed.
-    const results = queries.map((q) => queryResults.filter(sift(q)));
+    const results = queries.map(q => queryResults.filter(sift(q)));
 
     return results;
   }

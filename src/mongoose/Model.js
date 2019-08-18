@@ -18,7 +18,6 @@ export class Model {
     return query;
   }
 
-
   // escape hatch method that applies any transformatons to our query we'd expect
   query(query) {
     const transformedQuery = this.createDiscriminatorQuery(query);
@@ -53,7 +52,10 @@ export class Model {
     let record;
 
     if (!record) {
-      const query = { _id: typeof id === 'string' ? new mongoose.Schema.Types.ObjectId(id) : id };
+      const query = {
+        _id:
+          typeof id === 'string' ? new mongoose.Schema.Types.ObjectId(id) : id,
+      };
 
       record = await this.findOne(query);
     }
@@ -61,11 +63,7 @@ export class Model {
     return record;
   }
 
-  async findOneAndUpdate(
-    criteria,
-    update,
-    opts,
-  ) {
+  async findOneAndUpdate(criteria, update, opts) {
     const defaultOpts = { new: true, runValidators: true };
     const finalOpts = { ...defaultOpts, ...opts };
 
@@ -77,27 +75,19 @@ export class Model {
     return record;
   }
 
-  async findByIDAndUpdate(
-    id,
-    update,
-    opts,
-  ) {
-    const criteria = { _id: typeof id === 'string' ? new mongoose.Schema.Types.ObjectId(id) : id };
+  async findByIDAndUpdate(id, update, opts) {
+    const criteria = {
+      _id: typeof id === 'string' ? new mongoose.Schema.Types.ObjectId(id) : id,
+    };
     const defaultOpts = { new: true, runValidators: true };
     const finalOpts = { ...defaultOpts, ...opts };
 
-    const record = await this.findOneAndUpdate(
-      criteria,
-      update,
-      finalOpts,
-    );
+    const record = await this.findOneAndUpdate(criteria, update, finalOpts);
 
     return record;
   }
 
-  async findByIDAndDelete(
-    id,
-  ) {
+  async findByIDAndDelete(id) {
     const record = await this.connector
       .findByIdAndDelete(id)
       .lean()
@@ -106,9 +96,7 @@ export class Model {
     return record;
   }
 
-  async findOneAndDelete(
-    criteria,
-  ) {
+  async findOneAndDelete(criteria) {
     const record = await this.connector
       .findOneAndDelete(criteria)
       .lean()
