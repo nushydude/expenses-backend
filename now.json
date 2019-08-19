@@ -1,8 +1,9 @@
 {
+  "name": "expenses-app",
+  "public": false,
   "version": 2,
   "builds": [{ "src": "index.js", "use": "@now/node" }],
   "routes": [{ "src": "/.*", "dest": "index.js" }],
-  "name": "apollo",
   "env": {
     "SECRET": "@my-top-secret",
     "MONGODB_CONNECTION_STRING": "@mongo-connection-string",

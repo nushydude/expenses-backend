@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "now-build": "yarn babel-node ./index.js"
+  },
+  "engines": {
+    "node": "10.x"
   },
   "author": "",
   "license": "ISC",
