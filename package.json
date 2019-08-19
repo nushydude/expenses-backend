@@ -1,16 +1,5 @@
 {
-  "name": "improved-apollo-example",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "now-build": "yarn babel-node ./index.js"
-  },
-  "engines": {
-    "node": "10.x"
-  },
-  "author": "",
-  "license": "ISC",
+  "author": "Anusha Dharmasena",
   "dependencies": {
     "@phc/argon2": "^1.0.9",
     "@saeris/graphql-scalars": "^1.3.3",
@@ -30,6 +19,7 @@
     "upash": "^1.0.2",
     "validator": "^11.1.0"
   },
+  "description": "Apollo Micro GraphQL endpoint for the Expenses app",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.4.4",
@@ -48,5 +38,14 @@
     "flow-bin": "^0.105.2",
     "prettier": "1.18.2",
     "prettier-eslint": "^9.0.0"
-  }
+  },
+  "engines": {
+    "node": "10.x"
+  },
+  "main": "index.js",
+  "name": "improved-apollo-example",
+  "scripts": {
+    "now-build": "yarn babel-node ./index.js"
+  },
+  "version": "1.0.0"
 }

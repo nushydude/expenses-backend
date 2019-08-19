@@ -1,7 +1,8 @@
 export function getEnvVars() {
   const secret = process.env.SECRET;
+  const date = Date.now();
 
-  return { secret };
+  return { secret: `${date} - ${secret ? secret : 'no secret found'}` };
 }
 
 getEnvVars.typeDef = /* GraphQL */ `
