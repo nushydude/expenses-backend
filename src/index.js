@@ -2,9 +2,15 @@
 import argon2 from '@phc/argon2';
 import cors from 'micro-cors';
 import upash from 'upash';
-import { createHandler } from './src/graphql/createHandler';
-import { connect as mongooseConnect } from './src/mongoose';
+import { createHandler } from './graphql/createHandler';
+import { connect as mongooseConnect } from './mongoose';
 import sgMail from '@sendgrid/mail';
+
+// connect to mongoose
+mongooseConnect();
+
+// setup emailing service
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // install password hashing algorithm
 if (!upash.list().includes('argon2')) {
@@ -19,12 +25,6 @@ export default cors({
     res.end();
     return;
   }
-
-  // setup emailing service
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-  // connect to mongoose
-  mongooseConnect();
 
   // eslint-disable-next-line consistent-return
   return createHandler()(req, res);

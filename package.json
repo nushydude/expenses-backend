@@ -42,10 +42,10 @@
   "engines": {
     "node": "10.x"
   },
-  "main": "index.js",
+  "main": "src/index.js",
   "name": "improved-apollo-example",
   "scripts": {
-    "now-build": "yarn babel-node ./index.js"
+    "now-build": "yarn babel-node src/index.js"
   },
   "version": "1.0.0"
 }
