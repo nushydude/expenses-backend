@@ -273,7 +273,7 @@ const schema = new external_mongoose_["Schema"]({
   }
 });
 const Expense_name = 'Expense';
-const ExpenseConnector = Object(external_mongoose_["model"])(Expense_name, schema);
+const ExpenseConnector = external_mongoose_["models"][Expense_name] || Object(external_mongoose_["model"])(Expense_name, schema);
 // EXTERNAL MODULE: external "dataloader"
 var external_dataloader_ = __webpack_require__(10);
 var external_dataloader_default = /*#__PURE__*/__webpack_require__.n(external_dataloader_);
@@ -475,7 +475,7 @@ const User_schema = new external_mongoose_["Schema"]({
   timestamps: true
 });
 const User_name = 'User';
-const UserConnector = Object(external_mongoose_["model"])(User_name, User_schema);
+const UserConnector = models[User_name] || Object(external_mongoose_["model"])(User_name, User_schema);
 // EXTERNAL MODULE: external "jsonwebtoken"
 var external_jsonwebtoken_ = __webpack_require__(1);
 var external_jsonwebtoken_default = /*#__PURE__*/__webpack_require__.n(external_jsonwebtoken_);

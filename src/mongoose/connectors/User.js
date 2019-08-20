@@ -33,4 +33,4 @@ export const schema = new Schema(
 
 const name = 'User';
 
-export const UserConnector = model(name, schema);
+export const UserConnector = models[name] || model(name, schema);

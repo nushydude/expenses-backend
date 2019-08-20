@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, models, Schema } from 'mongoose';
 
 export const schema = new Schema({
   amount: { type: Number },
@@ -9,4 +9,4 @@ export const schema = new Schema({
 
 const name = 'Expense';
 
-export const ExpenseConnector = model(name, schema);
+export const ExpenseConnector = models[name] || model(name, schema);
