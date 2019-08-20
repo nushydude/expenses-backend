@@ -1,6 +1,6 @@
 import cuid from 'cuid';
 
-export async function getUserByJWT(jwt) {
+export async function getUserByJWT(jwt: string) {
   console.log('jwt:', jwt);
 
   // TODO:
