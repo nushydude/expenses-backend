@@ -56,7 +56,7 @@ export async function signUpWithEmail(
   } catch (error) {
     return {
       created: false,
-      error: { message: 'An unexpected error occurred' },
+      error: { message: error.message },
     };
   }
 }

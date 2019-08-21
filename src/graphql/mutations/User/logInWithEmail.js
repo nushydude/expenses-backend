@@ -52,7 +52,7 @@ export async function logInWithEmail(
       return {
         jwt: null,
         error: {
-          message: 'Account not verified. Verification email sent',
+          message: error.message,
         },
       };
     }

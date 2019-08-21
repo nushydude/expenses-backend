@@ -30,7 +30,8 @@
     "validator": "^11.1.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.2",

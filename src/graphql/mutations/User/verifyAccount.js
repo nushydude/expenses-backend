@@ -56,7 +56,7 @@ export async function verifyAccount(
     return {
       verified: false,
       error: {
-        message: 'An unexpected error occurred',
+        message: error.message,
       },
     };
   }

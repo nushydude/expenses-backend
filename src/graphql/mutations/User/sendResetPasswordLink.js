@@ -46,7 +46,7 @@ export async function sendResetPasswordLink(
   } catch (error) {
     return {
       error: {
-        message: 'An unexpected error occurred',
+        message: error.message,
       },
     };
   }

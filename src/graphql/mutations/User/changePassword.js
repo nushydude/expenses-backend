@@ -77,7 +77,7 @@ export async function changePassword(
     return {
       passwordChanged: false,
       error: {
-        message: 'An unexpected error occurred',
+        message: error.message,
       },
     };
   }

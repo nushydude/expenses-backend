@@ -57,7 +57,7 @@ export async function sendAccountVerificationLink(
   } catch (error) {
     return {
       error: {
-        message: 'An unexpected error occurred.',
+        message: error.message,
       },
     };
   }
