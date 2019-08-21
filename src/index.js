@@ -3,7 +3,7 @@ import argon2 from '@phc/argon2';
 import cors from 'micro-cors';
 import upash from 'upash';
 import { createHandler } from './graphql/createHandler';
-import { connect as mongooseConnect } from './mongoose';
+import { connect as mongooseConnect } from './mongoose/connect';
 import sgMail from '@sendgrid/mail';
 
 // connect to mongoose

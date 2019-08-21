@@ -1,6 +1,6 @@
 // @flow
+import upash from 'upash';
 import { isEmail } from 'validator';
-import { hashPassword } from '../../utils/hashPassword';
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
 
 type SignUpWithEmailArgs = {
@@ -41,7 +41,7 @@ export async function signUpWithEmail(
 
   try {
     // hash the password
-    const passwordHash = await hashPassword(password);
+    const passwordHash = await upash.use('argon2').hash(password);
 
     // create the user record
     const user = await ctx.db.User.create({

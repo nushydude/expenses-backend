@@ -1,3 +1,4 @@
-export const handleConnectionError = error => {
+// @flow
+export function handleConnectionError(error: Error) {
   console.log('handleConnectionError:', error.message);
-};
+}

@@ -1,5 +1,5 @@
 //  @flow
-import { hashPassword } from '../../utils/hashPassword';
+import upash from 'upash';
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
 import { generateJWT } from '../../utils/generateJWT';
 import type { UserMongooseRecord } from '../../../mongoose/types/User';
@@ -26,17 +26,25 @@ export async function logInWithEmail(
   const { email, password } = input;
 
   try {
-    // hash the password
-    const passwordHash = await hashPassword(password);
-
-    // find the user record
+    // find the user record matching the email
     const user = await ctx.db.User.findOne({
       email,
-      passwordHash,
     });
 
     // if not user is found, return error
     if (!user) {
+      return {
+        jwt: null,
+        error: {
+          message: 'User not found',
+        },
+      };
+    }
+
+    // verify password
+    const match = await upash.verify(user.passwordHash, password);
+
+    if (!match) {
       return {
         jwt: null,
         error: {
