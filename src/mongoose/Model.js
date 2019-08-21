@@ -49,16 +49,11 @@ export class Model {
   }
 
   async findByID(id) {
-    let record;
+    const query = {
+      _id: typeof id === 'string' ? new mongoose.Types.ObjectId(id) : id,
+    };
 
-    if (!record) {
-      const query = {
-        _id:
-          typeof id === 'string' ? new mongoose.Schema.Types.ObjectId(id) : id,
-      };
-
-      record = await this.findOne(query);
-    }
+    const record = await this.findOne(query);
 
     return record;
   }
@@ -77,7 +72,7 @@ export class Model {
 
   async findByIDAndUpdate(id, update, opts) {
     const criteria = {
-      _id: typeof id === 'string' ? new mongoose.Schema.Types.ObjectId(id) : id,
+      _id: typeof id === 'string' ? new mongoose.Types.ObjectId(id) : id,
     };
     const defaultOpts = { new: true, runValidators: true };
     const finalOpts = { ...defaultOpts, ...opts };
