@@ -1,23 +1,23 @@
 import { emailPasswordResetLink } from '../../utils/emailPasswordResetLink';
 import { generatePasswordResetSecret } from '../../utils/generatePasswordResetSecret';
 
-type SendRessetPasswordLinkArgs = {
+type SendResetPasswordLinkArgs = {
   input: {
     email: string,
   },
 };
 
-type SendRessetPasswordLinkResponse = {
+type SendResetPasswordLinkResponse = {
   error: ?{
     message: string,
   },
 };
 
-export async function sendRessetPasswordLink(
+export async function sendResetPasswordLink(
   _: void,
-  { input }: SendRessetPasswordLinkArgs,
+  { input }: SendResetPasswordLinkArgs,
   ctx: any,
-): Promise<SendRessetPasswordLinkResponse> {
+): Promise<SendResetPasswordLinkResponse> {
   let user;
 
   try {
