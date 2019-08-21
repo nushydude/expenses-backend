@@ -1,3 +1,4 @@
+// @flow
 export const User = {};
 
 export const typeDef = /* GraphQL */ `

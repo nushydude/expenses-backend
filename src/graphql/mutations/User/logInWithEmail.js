@@ -52,7 +52,7 @@ export async function logInWithEmail(
       return {
         jwt: null,
         error: {
-          message: error.message,
+          message: 'Account not yet verified. Verification email sent.',
         },
       };
     }
@@ -64,7 +64,7 @@ export async function logInWithEmail(
   } catch (error) {
     return {
       jwt: null,
-      error: { message: 'An unexpected error occurred' },
+      error: { message: error.message },
     };
   }
 }

@@ -1,4 +1,9 @@
-export function getEnvVars() {
+// @flow
+type GetEnvVarsResponse = {
+  secret: string,
+};
+
+export function getEnvVars(): GetEnvVarsResponse {
   const secret = process.env.SECRET;
   const date = Date.now();
 

@@ -1,3 +1,4 @@
+// @flow
 export const EnvVars = {};
 
 export const typeDef = /* GraphQL */ `

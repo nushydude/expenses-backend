@@ -1,7 +1,17 @@
+// @flow
 import { getUserByJWT } from './utils/getUserByJWT';
 import { createContextModels } from '../mongoose/createContextModels';
+import type { Role } from '../enums/role';
 
-export const createContext = async ({ req }) => {
+export type GraphQLContext = {
+  db: any,
+  user: ?{
+    id: string,
+    roles: Array<Role>,
+  },
+};
+
+export const createContext = async ({ req }: any): Promise<GraphQLContext> => {
   const jwt = req.headers.authorization;
 
   let user;

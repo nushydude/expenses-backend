@@ -1,3 +1,4 @@
+// @flow
 import { emailPasswordResetLink } from '../../utils/emailPasswordResetLink';
 import { generatePasswordResetSecret } from '../../utils/generatePasswordResetSecret';
 
