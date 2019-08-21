@@ -1,21 +1,26 @@
+//  @flow
 import invariant from 'invariant';
 import sgMail from '@sendgrid/mail';
 import { EMAIL_ADDRESS } from '../../enums/emailAddress';
 import { EMAIL_CATEGORY } from '../../enums/emailCategory';
+import type { UserMongooseRecord } from '../../mongoose/types/User';
 
-export function emailPasswordResetLink(user) {
+export function emailPasswordResetLink(
+  user: UserMongooseRecord,
+): Promise<void> {
   invariant(
     user.email && user.resetPasswordSecret,
     'user.email and user.resetPasswordSecret should be defined',
   );
 
-  sendMail({
+  return sgMail.send({
     from: {
       name: 'Expenses App',
       email: EMAIL_ADDRESS.NO_REPLY,
     },
     to: user.email,
     substitutions: {
+      // $FlowFixMe
       link: `${process.env.PASSWORD_RESET_URL}?secret=${user.resetPasswordSecret}`,
       name: user.name || 'there',
     },

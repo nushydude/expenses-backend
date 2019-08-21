@@ -1,5 +1,7 @@
-export * from './changePassword';
-export * from './sendAccountVerificationLink';
-export * from './sendResetPasswordLink';
-export * from './signUpWithEmail';
-export * from './verifyAccount';
+// @flow
+export { changePassword } from './changePassword';
+export { logInWithEmail } from './logInWithEmail';
+export { sendAccountVerificationLink } from './sendAccountVerificationLink';
+export { sendResetPasswordLink } from './sendResetPasswordLink';
+export { signUpWithEmail } from './signUpWithEmail';
+export { verifyAccount } from './verifyAccount';

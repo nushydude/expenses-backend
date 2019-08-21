@@ -1,7 +1,23 @@
 import { emailPasswordResetLink } from '../../utils/emailPasswordResetLink';
 import { generatePasswordResetSecret } from '../../utils/generatePasswordResetSecret';
 
-export async function sendResetPasswordLink(root, { input }, ctx) {
+type SendRessetPasswordLinkArgs = {
+  input: {
+    email: string,
+  },
+};
+
+type SendRessetPasswordLinkResponse = {
+  error: ?{
+    message: string,
+  },
+};
+
+export async function sendRessetPasswordLink(
+  _: void,
+  { input }: SendRessetPasswordLinkArgs,
+  ctx: any,
+): Promise<SendRessetPasswordLinkResponse> {
   let user;
 
   try {
@@ -17,9 +33,7 @@ export async function sendResetPasswordLink(root, { input }, ctx) {
     }
 
     // create a secret to reset the password
-    const resetPasswordSecret = generatePasswordResetSecret(
-      user._id.toString(),
-    );
+    const resetPasswordSecret = generatePasswordResetSecret(user);
 
     // store it in the user record
     user = await ctx.db.User.findByIDAndUpdate(

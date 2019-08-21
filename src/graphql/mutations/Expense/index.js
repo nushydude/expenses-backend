@@ -1,1 +1,2 @@
-export * from './addExpense';
+// @flow
+export { addExpense } from './addExpense';

@@ -1,4 +1,27 @@
-export async function addExpense(_, { input }, ctx) {
+// @flow
+import type { ExpenseMongooseRecord } from '../../../mongoose/types/Expense';
+
+type AddExpenseArgs = {
+  input: {
+    amount: number,
+    date: string,
+    paymentMethod: string,
+    type: string,
+  },
+};
+
+type AddExpenseResponse = {
+  expense: ?ExpenseMongooseRecord,
+  error: ?{
+    message: string,
+  },
+};
+
+export async function addExpense(
+  _: void,
+  { input }: AddExpenseArgs,
+  ctx: any,
+): Promise<AddExpenseResponse> {
   try {
     const expense = await ctx.db.Expense.create(input);
 

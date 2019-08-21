@@ -3,7 +3,26 @@ import invariant from 'invariant';
 import upash from 'upash';
 import { validatePasswordResetSecret } from '../../utils/validatePasswordResetSecret';
 
-export async function changePassword(root, { input }, ctx) {
+type ChangePasswordArgs = {
+  input: {
+    resetPasswordSecret: string,
+    confirmPassword: string,
+    password: string,
+  },
+};
+
+type ChangePasswordResponse = {
+  passwordChanged: boolean,
+  error: ?{
+    message: string,
+  },
+};
+
+export async function changePassword(
+  _: void,
+  { input }: ChangePasswordArgs,
+  ctx: any,
+): Promise<ChangePasswordResponse> {
   const { resetPasswordSecret, confirmPassword, password } = input;
 
   try {

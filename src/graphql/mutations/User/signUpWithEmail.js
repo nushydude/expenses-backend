@@ -1,8 +1,28 @@
+// @flow
 import { isEmail } from 'validator';
 import { hashPassword } from '../../utils/hashPassword';
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
 
-export async function signUpWithEmail(_, { input }, ctx) {
+type SignUpWithEmailArgs = {
+  input: {
+    email: string,
+    name: string,
+    password: string,
+  },
+};
+
+type SignUpWithEmailResponse = {
+  created: boolean,
+  error: ?{
+    message: string,
+  },
+};
+
+export async function signUpWithEmail(
+  _: void,
+  { input }: SignUpWithEmailArgs,
+  ctx: any,
+): Promise<SignUpWithEmailResponse> {
   const { email, password, name } = input;
 
   if (!isEmail(email)) {
@@ -34,8 +54,6 @@ export async function signUpWithEmail(_, { input }, ctx) {
 
     return { created: true, error: null };
   } catch (error) {
-    console.log('error:', error.message)
-
     return {
       created: false,
       error: { message: 'An unexpected error occurred' },

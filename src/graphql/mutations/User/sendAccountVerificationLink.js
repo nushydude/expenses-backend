@@ -2,7 +2,23 @@
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
 import { generateAccountVerificationSecret } from '../../utils/generateAccountVerificationSecret';
 
-export async function sendAccountVerificationLink(root, { input }, ctx) {
+type SendAccountVerificationLinkArgs = {
+  input: {
+    email: string,
+  },
+};
+
+type SendAccountVerificationLinkResponse = {
+  error: ?{
+    message: string,
+  },
+};
+
+export async function sendAccountVerificationLink(
+  _: void,
+  { input }: SendAccountVerificationLinkArgs,
+  ctx: any,
+): Promise<SendAccountVerificationLinkResponse> {
   let user;
 
   try {
@@ -25,9 +41,7 @@ export async function sendAccountVerificationLink(root, { input }, ctx) {
     }
 
     // create a secret to reset the password
-    const verificationSecret = generateAccountVerificationSecret(
-      user._id.toString(),
-    );
+    const verificationSecret = generateAccountVerificationSecret(user);
 
     // store it in the user record
     user = await ctx.db.User.findByIDAndUpdate(

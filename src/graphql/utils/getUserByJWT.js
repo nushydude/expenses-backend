@@ -1,13 +1,14 @@
-import cuid from 'cuid';
+// @flow
+import jsonwebtoken from 'jsonwebtoken';
+import type { Role } from '../../enums/role';
 
-export async function getUserByJWT(jwt: string) {
-  console.log('jwt:', jwt);
+type User = {
+  id: string,
+  roles: Array<Role>,
+};
 
-  // TODO:
-  // - validate jwt
-  // - find user in DB and return
+export function getUserByJWT(jwt: string): User {
+  const { userID, roles } = jsonwebtoken.decode(jwt);
 
-  return {
-    id: cuid(),
-  };
+  return { id: userID, roles };
 }

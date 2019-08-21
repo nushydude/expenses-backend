@@ -2,7 +2,24 @@
 import invariant from 'invariant';
 import { validateAccountVerificationSecret } from '../../utils/validateAccountVerificationSecret';
 
-export async function verifyAccount(root, { input }, ctx) {
+type VerifyAccountArgs = {
+  input: {
+    verificationSecret: string,
+  },
+};
+
+type VerifyAccountResponse = {
+  verified: boolean,
+  error: ?{
+    message: string,
+  },
+};
+
+export async function verifyAccount(
+  _: void,
+  { input }: VerifyAccountArgs,
+  ctx: any,
+): Promise<VerifyAccountResponse> {
   const { verificationSecret } = input;
 
   try {
