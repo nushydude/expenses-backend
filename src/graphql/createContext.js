@@ -1,4 +1,4 @@
-import { getUserByJWT } from './utils';
+import { getUserByJWT } from './utils/getUserByJWT';
 import { createContextModels } from '../mongoose/createContextModels';
 
 export const createContext = async ({ req }) => {
