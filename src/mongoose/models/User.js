@@ -7,9 +7,7 @@ export class UserModel extends Model {
 
     user = await this.findByIDAndUpdate(user._id, {
       $set: {
-        verificationSecret: generateAccountVerificationSecret(
-          user._id.toString(),
-        ),
+        verificationSecret: generateAccountVerificationSecret(user),
       },
     });
 
