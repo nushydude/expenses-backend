@@ -1,5 +1,5 @@
 import DataLoader from 'dataloader';
-import stringify from 'fast-json-stable-stringify';
+// import stringify from 'fast-json-stable-stringify';
 import { createMongooseBatchLoader } from './createMongooseBatchLoader';
 
 // simple wrapper abstracting DataLoader creation, preconfiguring it with a
@@ -7,6 +7,8 @@ import { createMongooseBatchLoader } from './createMongooseBatchLoader';
 export function createMongooseDataLoader(connector) {
   return new DataLoader(createMongooseBatchLoader(connector), {
     // determnistic so our queries correctly caches
-    cacheKeyFn: stringify,
+    // cacheKeyFn: stringify,
+    // keep cache disabled for now
+    cache: false,
   });
 }

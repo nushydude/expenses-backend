@@ -1,6 +1,3 @@
-// import cuid from 'cuid';
-// import { expenses } from '../../../dataStore';
-
 export async function addExpense(_, { input }, ctx) {
   try {
     const expense = await ctx.db.Expense.create(input);

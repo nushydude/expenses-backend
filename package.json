@@ -1,6 +1,12 @@
 {
   "author": "Anusha Dharmasena",
   "dependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-flow": "^7.0.0",
     "@phc/argon2": "^1.0.9",
     "@saeris/graphql-scalars": "^1.3.3",
     "@sendgrid/mail": "^6.4.0",
@@ -26,14 +32,7 @@
     "webpack-cli": "^3.3.7",
     "webpack-node-externals": "^1.7.2"
   },
-  "description": "Apollo Micro GraphQL endpoint for the Expenses app",
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.4.4",
-    "@babel/node": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-flow": "^7.0.0",
     "babel-eslint": "^10.0.2",
     "eslint": "^6.1.0",
     "eslint-config-eslint": "^5.0.1",
@@ -50,9 +49,10 @@
     "node": "10.x"
   },
   "main": "dist/index.js",
-  "name": "improved-apollo-example",
+  "name": "expenses-app-api",
   "version": "1.0.0",
   "scripts": {
+    "now-build": "webpack --log-level=debug",
     "build": "webpack --log-level=debug",
     "dev": "babel-node node_modules/.bin/micro-dev src/index.js --watch src"
   }

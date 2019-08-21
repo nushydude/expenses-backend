@@ -5,8 +5,9 @@ const HappyPack = require('happypack');
 const defineNodeExternals = require('webpack-node-externals');
 
 const config = {
-  devtool: 'source-map',
+  devtool: false,
   entry: './src/index.js',
+  // prevent deps from getting baked in
   externals: [defineNodeExternals()],
   mode: 'production',
   module: {
@@ -37,7 +38,6 @@ const config = {
           },
         },
       ],
-      threads: 2,
     }),
   ],
   stats: {
