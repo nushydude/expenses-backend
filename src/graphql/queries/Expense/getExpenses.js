@@ -43,9 +43,7 @@ getExpenses.typeDef = /* GraphQL */ `
   }
 
   input GetExpensesInput {
-    """
-    dummy field.
-    """
-    _: Boolean
+    to: DateTime
+    from: DateTime
   }
 `;
