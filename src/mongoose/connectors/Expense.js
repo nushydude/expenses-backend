@@ -1,10 +1,12 @@
+// @flow
 import { model, models, Schema } from 'mongoose';
 
 export const schema = new Schema({
-  amount: { type: Number },
-  date: { type: Date },
-  paymentMethod: { type: String },
-  type: { type: String },
+  amount: { type: Number, required: true },
+  date: { type: Date, required: true },
+  paymentMethod: { type: String, required: true },
+  type: { type: String, required: true },
+  userID: { type: Schema.Types.ObjectId, required: true, index: true },
 });
 
 const name = 'Expense';

@@ -1,7 +1,7 @@
 // @flow
 import type { ExpenseMongooseRecord } from '../../../mongoose/types/Expense';
 
-type AddExpenseArgs = {
+type CreateExpenseArgs = {
   input: {
     amount: number,
     date: string,
@@ -10,20 +10,22 @@ type AddExpenseArgs = {
   },
 };
 
-type AddExpenseResponse = {
+type CreateExpenseResponse = {
   expense: ?ExpenseMongooseRecord,
   error: ?{
     message: string,
   },
 };
 
-export async function addExpense(
+export async function createExpense(
   _: void,
-  { input }: AddExpenseArgs,
+  { input }: CreateExpenseArgs,
   ctx: any,
-): Promise<AddExpenseResponse> {
+): Promise<CreateExpenseResponse> {
+  const userID = ctx.user?.id;
+
   try {
-    const expense = await ctx.db.Expense.create(input);
+    const expense = await ctx.db.Expense.create({ ...input, userID });
 
     return { expense, error: null };
   } catch (error) {
@@ -36,19 +38,19 @@ export async function addExpense(
   }
 }
 
-addExpense.typeDef = /* GraphQL */ `
+createExpense.typeDef = /* GraphQL */ `
   extend type Mutation {
-    addExpense(input: AddExpenseInput!): AddExpenseResponse!
+    createExpense(input: CreateExpenseInput!): CreateExpenseResponse!
   }
 
-  input AddExpenseInput {
+  input CreateExpenseInput {
     amount: Float!
     date: String!
     paymentMethod: String!
     type: String!
   }
 
-  type AddExpenseResponse implements MutationResponse {
+  type CreateExpenseResponse implements MutationResponse {
     expense: Expense
     error: Error
   }

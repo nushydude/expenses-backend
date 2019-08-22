@@ -1,2 +1,2 @@
 // @flow
-export { addExpense } from './addExpense';
+export { createExpense } from './createExpense';
