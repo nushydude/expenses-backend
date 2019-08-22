@@ -1,3 +1,4 @@
+// @flow
 import { Model } from '../Model';
 import { generateAccountVerificationSecret } from '../../graphql/utils/generateAccountVerificationSecret';
 

@@ -1,3 +1,4 @@
+// @flow
 import DataLoader from 'dataloader';
 // import stringify from 'fast-json-stable-stringify';
 import { createMongooseBatchLoader } from './createMongooseBatchLoader';

@@ -1,3 +1,4 @@
+// @flow
 import { DateTimeScalar } from '@saeris/graphql-scalars';
 import { typeDef as EnvVars } from './schema/EnvVars';
 import { typeDef as Expense } from './schema/Expense';

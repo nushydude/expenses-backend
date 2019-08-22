@@ -1,4 +1,4 @@
-//  @flow
+// @flow
 import invariant from 'invariant';
 import sgMail from '@sendgrid/mail';
 import { EMAIL_ADDRESS } from '../../enums/emailAddress';

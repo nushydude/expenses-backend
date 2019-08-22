@@ -1,3 +1,4 @@
+// @flow
 import sift from 'sift';
 
 // generates our batch loader function for plugging into a DataLoader, running

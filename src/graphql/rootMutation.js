@@ -1,3 +1,4 @@
+// @flow
 import * as expenseMutations from './mutations/Expense';
 import * as userMutations from './mutations/User';
 

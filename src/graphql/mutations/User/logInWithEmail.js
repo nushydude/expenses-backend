@@ -1,4 +1,4 @@
-//  @flow
+// @flow
 import upash from 'upash';
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
 import { generateJWT } from '../../utils/generateJWT';

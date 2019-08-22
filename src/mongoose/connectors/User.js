@@ -1,3 +1,4 @@
+// @flow
 import { model, models, Schema } from 'mongoose';
 import { ROLE } from '../../enums/role';
 
