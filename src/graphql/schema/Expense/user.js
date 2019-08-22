@@ -4,7 +4,7 @@ import type { ExpenseMongooseRecord } from '../../../mongoose/types/Expense';
 import type { UserMongooseRecord } from '../../../mongoose/types/User';
 
 export async function user(
-  parent: UserMongooseRecord,
+  parent: ExpenseMongooseRecord,
   args: void,
   ctx: any,
 ): Promise<UserMongooseRecord> {

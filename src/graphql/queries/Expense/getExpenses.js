@@ -9,7 +9,7 @@ type GetExpensesArgs = {
 
 export async function getExpenses(
   _: void,
-  { input }: void,
+  { input }: GetExpensesArgs,
   ctx: any,
 ): Promise<Array<ExpenseMongooseRecord>> {
   const userID = ctx.user?.id;
@@ -18,7 +18,7 @@ export async function getExpenses(
     return [];
   }
 
-  const criteria = {
+  const criteria: any = {
     userID: new mongoose.Types.ObjectId(userID),
   };
 
