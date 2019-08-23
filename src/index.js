@@ -20,6 +20,15 @@ if (!upash.list().includes('argon2')) {
 // export the request handler function
 export default cors({
   allowMethods: ['POST', 'GET', 'OPTIONS'],
+  allowHeaders: [
+    'X-Requested-With',
+    'Access-Control-Allow-Origin',
+    'X-HTTP-Method-Override',
+    'Content-Type',
+    'Authorization',
+    'Accept',
+    'apollographql-client-version',
+  ],
 })((req, res) => {
   if (req.method === 'OPTIONS') {
     res.end();
