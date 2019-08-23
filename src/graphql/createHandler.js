@@ -5,11 +5,12 @@ import { resolvers } from './resolvers';
 import { typeDefs } from './typeDefs';
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  context: createContext,
+  cors: false,
   introspection: true,
   playground: true,
-  context: createContext,
+  resolvers,
+  typeDefs,
 });
 
 export const createHandler = () => server.createHandler();
