@@ -9,6 +9,7 @@ type SendResetPasswordLinkArgs = {
 };
 
 type SendResetPasswordLinkResponse = {
+  sent: boolean,
   error: ?{
     message: string,
   },
@@ -26,6 +27,7 @@ export async function sendResetPasswordLink(
 
     if (!user) {
       return {
+        sent: false,
         error: {
           message:
             'The user account you are trying to reset the password cannot be found',
@@ -43,9 +45,10 @@ export async function sendResetPasswordLink(
       ctx,
     );
 
-    return { error: null };
+    return { sent: true, error: null };
   } catch (error) {
     return {
+      sent: false,
       error: {
         message: error.message,
       },
@@ -65,6 +68,7 @@ sendResetPasswordLink.typeDef = /* GraphQL */ `
   }
 
   type SendResetPasswordLinkResponse implements MutationResponse {
+    send: Boolean!
     error: Error
   }
 `;
