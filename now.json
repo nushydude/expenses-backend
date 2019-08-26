@@ -19,6 +19,7 @@
     "SENDGRID_API_KEY": "@sendgrid-api-key",
     "PASSWORD_RESET_URL": "@password-reset-url",
     "ACCOUNT_VERIFICATION_URL": "@account-verification-url",
-    "JWT_ISSUER": "@jwt-issuer"
+    "JWT_ISSUER": "@jwt-issuer",
+    "SENTRY_DSN": "@sentry-dsn"
   }
 }

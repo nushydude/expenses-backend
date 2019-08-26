@@ -5,6 +5,9 @@ import upash from 'upash';
 import { createHandler } from './graphql/createHandler';
 import { connect as mongooseConnect } from './mongoose/connect';
 import sgMail from '@sendgrid/mail';
+import Sentry from '@sentry/node';
+
+Sentry.init({ dsn: process.env.SENTRY_DSN });
 
 // connect to mongoose
 mongooseConnect();
