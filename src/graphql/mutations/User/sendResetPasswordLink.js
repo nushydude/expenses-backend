@@ -68,7 +68,7 @@ sendResetPasswordLink.typeDef = /* GraphQL */ `
   }
 
   type SendResetPasswordLinkResponse implements MutationResponse {
-    send: Boolean!
+    sent: Boolean!
     error: Error
   }
 `;

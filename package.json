@@ -58,6 +58,6 @@
   "scripts": {
     "now-build": "webpack --log-level=debug",
     "build": "webpack --log-level=debug",
-    "dev": "babel-node node_modules/.bin/micro-dev src/index.js --watch src"
+    "start": "babel-node node_modules/.bin/micro-dev src/index.js --watch src"
   }
 }
