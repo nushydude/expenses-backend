@@ -1,7 +1,7 @@
 // @flow
 import upash from 'upash';
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
-import { generateJWT } from '../../utils/generateJWT';
+import { generateJWT } from '../../../utils/generateJWT';
 import type { UserMongooseRecord } from '../../../mongoose/types/User';
 
 type LogInWithEmailArgs = {

@@ -1,5 +1,5 @@
 // @flow
-import { getUserByJWT } from './utils/getUserByJWT';
+import { getUserByJWT } from '../utils/getUserByJWT';
 import { createContextModels } from '../mongoose/createContextModels';
 import type { Role } from '../enums/role';
 

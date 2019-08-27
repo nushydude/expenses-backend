@@ -1,11 +1,13 @@
 // @flow
 import argon2 from '@phc/argon2';
 import cors from 'micro-cors';
+import { createError } from 'micro';
 import upash from 'upash';
 import { createHandler } from './graphql/createHandler';
 import { connect as mongooseConnect } from './mongoose/connect';
 import sgMail from '@sendgrid/mail';
-import Sentry from '@sentry/node';
+import * as Sentry from '@sentry/node';
+import { verifyJWT } from './utils/verifiyJWT';
 
 Sentry.init({ dsn: process.env.SENTRY_DSN });
 
@@ -36,6 +38,15 @@ export default cors({
   if (req.method === 'OPTIONS') {
     res.end();
     return;
+  }
+
+  const jwt = req.headers.authorization;
+  if (jwt) {
+    try {
+      verifyJWT();
+    } catch (error) {
+      throw createError(401, 'Invalid JWT');
+    }
   }
 
   // eslint-disable-next-line consistent-return
