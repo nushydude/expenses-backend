@@ -22,6 +22,8 @@ if (!upash.list().includes('argon2')) {
   upash.install('argon2', argon2);
 }
 
+myUndefinedFunction();
+
 // export the request handler function
 export default cors({
   allowMethods: ['POST', 'GET', 'OPTIONS'],
