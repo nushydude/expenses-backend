@@ -5,7 +5,7 @@ type GetEnvVarsResponse = {
 
 export function getEnvVars(): GetEnvVarsResponse {
   const secret = process.env.SECRET;
-  const date = Date.now();
+  // const date = Date.now();
 
   return { secret: `${date} - ${secret ? secret : 'no secret found'}` };
 }
