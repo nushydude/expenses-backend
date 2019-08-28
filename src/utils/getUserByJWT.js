@@ -1,6 +1,6 @@
 // @flow
 import jsonwebtoken from 'jsonwebtoken';
-import type { Role } from '../../enums/role';
+import type { Role } from '../enums/role';
 
 type User = {
   id: string,

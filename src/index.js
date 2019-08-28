@@ -43,7 +43,7 @@ export default cors({
   const jwt = req.headers.authorization;
   if (jwt) {
     try {
-      verifyJWT();
+      verifyJWT(jwt);
     } catch (error) {
       throw createError(401, 'Invalid JWT');
     }

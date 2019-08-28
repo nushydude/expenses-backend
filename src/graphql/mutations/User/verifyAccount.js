@@ -1,4 +1,5 @@
 // @flow
+import * as Sentry from '@sentry/node';
 import invariant from 'invariant';
 import { validateAccountVerificationSecret } from '../../utils/validateAccountVerificationSecret';
 
@@ -53,10 +54,12 @@ export async function verifyAccount(
 
     return { verified: user.verified, error: null };
   } catch (error) {
+    Sentry.captureException(error);
+
     return {
       verified: false,
       error: {
-        message: error.message,
+        message: 'Unknown error',
       },
     };
   }

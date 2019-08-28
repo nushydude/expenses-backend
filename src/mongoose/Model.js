@@ -1,5 +1,6 @@
 // @flow
 import mongoose from 'mongoose';
+import type { MongooseQuery, MongooseDocument } from 'mongoose';
 import { createMongooseDataLoader } from './createMongooseDataLoader';
 
 // thin wrapper around a connector (mongoose model) that provides us an interface
@@ -20,7 +21,7 @@ export class Model {
   }
 
   // escape hatch method that applies any transformatons to our query we'd expect
-  query(query) {
+  query(query: MongooseQuery) {
     const transformedQuery = this.createDiscriminatorQuery(query);
 
     return this.connector.find(transformedQuery);
@@ -35,7 +36,7 @@ export class Model {
     return result;
   }
 
-  async find(query) {
+  async find(query: MongooseQuery) {
     const rawResult = await this.load(query);
 
     const records = rawResult.filter(Boolean);
@@ -43,13 +44,15 @@ export class Model {
     return records;
   }
 
-  async findOne(query) {
+  async findOne(query: MongooseQuery) {
     const [record] = await this.load(query);
 
     return record;
   }
 
-  async findByID(id) {
+  async findByID(
+    id: string | mongoose.Types.ObjectId,
+  ): Promise<?MongooseDocument> {
     const query = {
       _id: typeof id === 'string' ? new mongoose.Types.ObjectId(id) : id,
     };
@@ -59,7 +62,11 @@ export class Model {
     return record;
   }
 
-  async findOneAndUpdate(criteria, update, opts) {
+  async findOneAndUpdate(
+    criteria: Object,
+    update: Object,
+    opts: Object,
+  ): Promise<?MongooseDocument> {
     const defaultOpts = { new: true, runValidators: true };
     const finalOpts = { ...defaultOpts, ...opts };
 
@@ -71,7 +78,11 @@ export class Model {
     return record;
   }
 
-  async findByIDAndUpdate(id, update, opts) {
+  async findByIDAndUpdate(
+    id: string | mongoose.Types.ObjectId,
+    update: Object,
+    opts: Object,
+  ): Promise<?MongooseDocument> {
     const criteria = {
       _id: typeof id === 'string' ? new mongoose.Types.ObjectId(id) : id,
     };
@@ -83,7 +94,9 @@ export class Model {
     return record;
   }
 
-  async findByIDAndDelete(id) {
+  async findByIDAndDelete(
+    id: mongoose.Types.ObjectId,
+  ): Promise<?MongooseDocument> {
     const record = await this.connector
       .findByIdAndDelete(id)
       .lean()
@@ -92,7 +105,7 @@ export class Model {
     return record;
   }
 
-  async findOneAndDelete(criteria) {
+  async findOneAndDelete(criteria: Object) {
     const record = await this.connector
       .findOneAndDelete(criteria)
       .lean()

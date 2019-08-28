@@ -1,4 +1,5 @@
 // @flow
+import * as Sentry from '@sentry/node';
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
 import { generateAccountVerificationSecret } from '../../utils/generateAccountVerificationSecret';
 
@@ -9,6 +10,7 @@ type SendAccountVerificationLinkArgs = {
 };
 
 type SendAccountVerificationLinkResponse = {
+  sent: boolean,
   error: ?{
     message: string,
   },
@@ -26,6 +28,7 @@ export async function sendAccountVerificationLink(
 
     if (!user) {
       return {
+        sent: false,
         error: {
           message: 'The account you are trying to verify is not found',
         },
@@ -34,6 +37,7 @@ export async function sendAccountVerificationLink(
 
     if (user.verified) {
       return {
+        sent: false,
         error: {
           message: 'The account you are trying to verify is already verified',
         },
@@ -53,11 +57,14 @@ export async function sendAccountVerificationLink(
     // email the reset password link
     await emailAccountVerificationLink(user);
 
-    return { error: null };
+    return { sent: true, error: null };
   } catch (error) {
+    Sentry.captureException(error);
+
     return {
+      sent: false,
       error: {
-        message: error.message,
+        message: 'Unknown error',
       },
     };
   }
@@ -75,6 +82,7 @@ sendAccountVerificationLink.typeDef = /* GraphQL */ `
   }
 
   type SendAccountVerificationLinkResponse implements MutationResponse {
+    sent: Boolean!
     error: Error
   }
 `;

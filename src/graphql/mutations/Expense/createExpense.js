@@ -1,4 +1,5 @@
 // @flow
+import * as Sentry from '@sentry/node';
 import type { ExpenseMongooseRecord } from '../../../mongoose/types/Expense';
 
 type CreateExpenseArgs = {
@@ -29,10 +30,12 @@ export async function createExpense(
 
     return { expense, error: null };
   } catch (error) {
+    Sentry.captureException(error);
+
     return {
       expense: null,
       error: {
-        message: error.message,
+        message: 'Unknown error',
       },
     };
   }

@@ -1,6 +1,6 @@
 // @flow
 import jsonwebtoken from 'jsonwebtoken';
-import type { UserMongooseRecord } from '../../mongoose/types/User';
+import type { UserMongooseRecord } from '../mongoose/types/User';
 
 export const CONFIG = {
   algorithm: 'HS256',
