@@ -1,4 +1,5 @@
 // @flow
+import * as Sentry from '@sentry/node';
 import invariant from 'invariant';
 import upash from 'upash';
 import { validatePasswordResetSecret } from '../../utils/validatePasswordResetSecret';
@@ -74,11 +75,11 @@ export async function changePassword(
 
     return { passwordChanged: true, error: null };
   } catch (error) {
+    Sentry.captureException(error);
+
     return {
       passwordChanged: false,
-      error: {
-        message: error.message,
-      },
+      error: { message: 'Unknown error' },
     };
   }
 }

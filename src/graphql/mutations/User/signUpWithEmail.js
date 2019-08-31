@@ -1,4 +1,5 @@
 // @flow
+import * as Sentry from '@sentry/node';
 import upash from 'upash';
 import { isEmail } from 'validator';
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
@@ -54,9 +55,13 @@ export async function signUpWithEmail(
 
     return { created: true, error: null };
   } catch (error) {
+    Sentry.captureException(error);
+
     return {
       created: false,
-      error: { message: error.message },
+      error: {
+        message: 'Unknown error',
+      },
     };
   }
 }

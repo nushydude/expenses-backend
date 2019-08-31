@@ -1,4 +1,5 @@
 // @flow
+import * as Sentry from '@sentry/node';
 import { emailPasswordResetLink } from '../../utils/emailPasswordResetLink';
 import { generatePasswordResetSecret } from '../../utils/generatePasswordResetSecret';
 
@@ -47,10 +48,12 @@ export async function sendResetPasswordLink(
 
     return { sent: true, error: null };
   } catch (error) {
+    Sentry.captureException(error);
+
     return {
       sent: false,
       error: {
-        message: error.message,
+        message: 'Unknown error',
       },
     };
   }

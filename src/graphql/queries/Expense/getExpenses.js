@@ -3,8 +3,10 @@ import mongoose from 'mongoose';
 import type { ExpenseMongooseRecord } from '../../../mongoose/types/Expense';
 
 type GetExpensesArgs = {
-  to: Date,
-  from: Date,
+  input: {
+    to: Date,
+    from: Date,
+  },
 };
 
 export async function getExpenses(

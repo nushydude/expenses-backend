@@ -1,4 +1,5 @@
 // @flow
+import * as Sentry from '@sentry/node';
 import upash from 'upash';
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
 import { generateJWT } from '../../../utils/generateJWT';
@@ -70,9 +71,11 @@ export async function logInWithEmail(
 
     return { jwt, error: null };
   } catch (error) {
+    Sentry.captureException(error);
+
     return {
       jwt: null,
-      error: { message: error.message },
+      error: { message: 'Unknown error' },
     };
   }
 }
