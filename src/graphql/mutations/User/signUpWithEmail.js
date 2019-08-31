@@ -3,6 +3,7 @@ import * as Sentry from '@sentry/node';
 import upash from 'upash';
 import { isEmail } from 'validator';
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
+import { isMongoDBConflictError } from '../../../errors/matchers/isMongoDBConflictError';
 
 type SignUpWithEmailArgs = {
   input: {
@@ -55,6 +56,16 @@ export async function signUpWithEmail(
 
     return { created: true, error: null };
   } catch (error) {
+    if (isMongoDBConflictError(error)) {
+      return {
+        created: false,
+        error: {
+          message:
+            'An account with the same email exists. Please log in instead.',
+        },
+      };
+    }
+
     Sentry.captureException(error);
 
     return {
