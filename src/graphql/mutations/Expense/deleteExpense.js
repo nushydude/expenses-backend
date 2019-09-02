@@ -26,7 +26,7 @@ export async function deleteExpense(
   try {
     const expense = await ctx.db.Expense.findOneAndDelete({
       _id: new mongoose.Types.ObjectId(input.expenseID),
-      userID: new mongoose.Types.ObjectId(input.expenseID),
+      userID: new mongoose.Types.ObjectId(input.userID),
     });
 
     return { expense, error: null };
