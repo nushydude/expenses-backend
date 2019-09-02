@@ -27,6 +27,15 @@ export async function updateExpense(
 ): Promise<UpdateExpenseResponse> {
   const userID = ctx.user?.id;
 
+  if (!userID) {
+    return {
+      expense: null,
+      error: {
+        message: 'You should be logged in to update an expense',
+      },
+    };
+  }
+
   const { expenseID, ...fields } = input;
 
   try {

@@ -25,6 +25,15 @@ export async function createExpense(
 ): Promise<CreateExpenseResponse> {
   const userID = ctx.user?.id;
 
+  if (!userID) {
+    return {
+      expense: null,
+      error: {
+        message: 'You should be logged in to create an expense',
+      },
+    };
+  }
+
   try {
     const expense = await ctx.db.Expense.create({ ...input, userID });
 

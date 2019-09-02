@@ -23,6 +23,15 @@ export async function deleteExpense(
 ): Promise<DeleteExpenseResponse> {
   const userID = ctx.user?.id;
 
+  if (!userID) {
+    return {
+      expense: null,
+      error: {
+        message: 'You should be logged in to delete an expense',
+      },
+    };
+  }
+
   try {
     const expense = await ctx.db.Expense.findOneAndDelete({
       _id: new mongoose.Types.ObjectId(input.expenseID),
