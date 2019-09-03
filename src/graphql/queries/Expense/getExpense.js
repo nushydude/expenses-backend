@@ -31,7 +31,7 @@ export async function getExpense(
 
 getExpense.typeDef = /* GraphQL */ `
   extend type Query {
-    getExpense(input: GetExpenseInput!): [Expense]!
+    getExpense(input: GetExpenseInput!): Expense
   }
 
   input GetExpenseInput {
