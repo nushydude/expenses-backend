@@ -8,6 +8,7 @@ type CreateExpenseArgs = {
     date: string,
     paymentMethod: string,
     type: string,
+    notes?: string,
   },
 };
 
@@ -25,11 +26,36 @@ export async function createExpense(
 ): Promise<CreateExpenseResponse> {
   const userID = ctx.user?.id;
 
+  if (!userID) {
+    return {
+      expense: null,
+      error: {
+        message: 'You need to be logged in to create an expense',
+      },
+    };
+  }
+
   try {
+    // TODO:
+    // this should be a transaction
+
+    // create the expense
     const expense = await ctx.db.Expense.create({ ...input, userID });
+
+    const { type, paymentMethod } = input;
+
+    // add the type and payment method to the user acccount
+    await ctx.db.User.findByIDAndUpdate(userID, {
+      $addToSet: {
+        types: type,
+        paymentMethods: paymentMethod,
+      },
+    });
 
     return { expense, error: null };
   } catch (error) {
+    console.log('error:', error.message);
+
     Sentry.captureException(error);
 
     return {
@@ -51,6 +77,7 @@ createExpense.typeDef = /* GraphQL */ `
     date: String!
     paymentMethod: String!
     type: String!
+    notes: String
   }
 
   type CreateExpenseResponse implements MutationResponse {

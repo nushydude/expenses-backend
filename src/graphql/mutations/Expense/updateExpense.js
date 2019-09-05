@@ -1,6 +1,7 @@
 // @flow
 import * as Sentry from '@sentry/node';
 import mongoose from 'mongoose';
+import { isEmpty } from 'ramda';
 import type { ExpenseMongooseRecord } from '../../../mongoose/types/Expense';
 
 type UpdateExpenseArgs = {
@@ -10,6 +11,7 @@ type UpdateExpenseArgs = {
     date?: string,
     paymentMethod?: string,
     type?: string,
+    notes?: string,
   },
 };
 
@@ -27,6 +29,15 @@ export async function updateExpense(
 ): Promise<UpdateExpenseResponse> {
   const userID = ctx.user?.id;
 
+  if (!userID) {
+    return {
+      expense: null,
+      error: {
+        message: 'You need to be logged in to update an expense',
+      },
+    };
+  }
+
   const { expenseID, ...fields } = input;
 
   try {
@@ -39,6 +50,19 @@ export async function updateExpense(
         $set: fields,
       },
     );
+
+    // add the potentially *new* type and paymentMethod to user
+    const { type, paymentMethod } = input;
+    const $addToSet = {};
+    if (type) {
+      $addToSet.type = type;
+    }
+    if (paymentMethod) {
+      $addToSet.paymentMethod = paymentMethod;
+    }
+    if (!isEmpty($addToSet)) {
+      await ctx.db.User.findByIDAndUpdate(userID, { $addToSet });
+    }
 
     return { expense, error: null };
   } catch (error) {
@@ -59,9 +83,10 @@ updateExpense.typeDef = /* GraphQL */ `
   }
 
   input UpdateExpenseInput {
-    expenseID: ID!
     amount: Float
     date: String
+    expenseID: ID!
+    notes: String
     paymentMethod: String
     type: String
   }

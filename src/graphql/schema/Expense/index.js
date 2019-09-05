@@ -12,6 +12,7 @@ export const typeDef = /* GraphQL */ `
     amount: Float!
     date: String!
     id: ID!
+    notes: String
     paymentMethod: String
     type: String
     user: User!
