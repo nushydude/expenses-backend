@@ -4,6 +4,7 @@ import { model, models, Schema } from 'mongoose';
 export const schema = new Schema({
   amount: { type: Number, required: true },
   date: { type: Date, required: true },
+  notes: { type: String },
   paymentMethod: { type: String, required: true },
   type: { type: String, required: true },
   userID: { type: Schema.Types.ObjectId, required: true, index: true },

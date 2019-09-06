@@ -4,7 +4,7 @@ import { ROLE } from '../../enums/role';
 
 export const schema = new Schema(
   {
-    email: { type: String, unique: true, required: true },
+    email: { type: String, required: true, unique: true },
     passwordHash: { type: String },
     name: { type: String },
     roles: {
@@ -26,6 +26,9 @@ export const schema = new Schema(
     verified: { type: Boolean, default: false },
     verificationSecret: { type: String },
     resetPasswordSecret: { type: String },
+
+    types: { type: [String], default: [] },
+    paymentMethods: { type: [String], default: [] },
   },
   {
     timestamps: true,
