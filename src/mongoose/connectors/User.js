@@ -8,7 +8,7 @@ export const schema = new Schema(
     passwordHash: { type: String },
     name: { type: String },
     roles: {
-      type: [Number],
+      type: [String],
       default: [ROLE.USER],
       validate: {
         validator(value) {

@@ -9,12 +9,12 @@ export const CONFIG = {
 };
 
 export function generateJWT(user: UserMongooseRecord): string {
-  return jsonwebtoken.sign(
-    {
-      userID: user._id.toString(),
-      roles: user.roles,
-    },
-    process.env.JWT_SECRET,
-    CONFIG,
-  );
+  const payload = {
+    userID: user._id.toString(),
+    roles: user.roles,
+  };
+
+  console.log('payload:', payload);
+
+  return jsonwebtoken.sign(payload, process.env.JWT_SECRET, CONFIG);
 }

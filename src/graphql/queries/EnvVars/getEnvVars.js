@@ -1,13 +1,13 @@
 // @flow
-type GetEnvVarsResponse = {
-  secret: string,
-};
+import { ForbiddenError } from 'apollo-server-micro';
+import { isAdmin } from '../../../utils/isAdmin';
 
-export function getEnvVars(): GetEnvVarsResponse {
-  const secret = process.env.SECRET;
-  const date = Date.now();
+export function getEnvVars(root: any, args: any, ctx: any): any {
+  if (!isAdmin(ctx)) {
+    throw new ForbiddenError();
+  }
 
-  return { secret: `${date} - ${secret ? secret : 'no secret found'}` };
+  return process.env;
 }
 
 getEnvVars.typeDef = /* GraphQL */ `
