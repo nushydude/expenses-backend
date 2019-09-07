@@ -41,7 +41,7 @@ export async function getExpenses(
   };
 
   if (to) {
-    criteria.date = { $lt: to };
+    criteria.date = { $lte: to };
   }
 
   if (from) {
