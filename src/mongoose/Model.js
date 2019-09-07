@@ -113,4 +113,13 @@ export class Model {
 
     return record;
   }
+
+  async count(criteria: Object) {
+    const count = await this.connector
+      .count(criteria)
+      .lean()
+      .exec();
+
+    return count;
+  }
 }

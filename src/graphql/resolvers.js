@@ -16,4 +16,11 @@ export const resolvers = {
       );
     },
   },
+  PaginatedListResponse: {
+    __resolveType: () => {
+      throw new Error(
+        'PaginatedListResponse interface should not be used as a return type',
+      );
+    },
+  },
 };

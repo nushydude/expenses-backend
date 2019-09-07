@@ -3,7 +3,7 @@ import { DateTimeScalar } from '@saeris/graphql-scalars';
 import { typeDef as EnvVars } from './schema/EnvVars';
 import { typeDef as Expense } from './schema/Expense';
 import { typeDef as User } from './schema/User';
-import { Error, MutationResponse } from './helpers';
+import { Error, MutationResponse, PaginatedListResponse } from './helpers';
 import { rootMutation } from './rootMutation';
 import { rootQuery } from './rootQuery';
 
@@ -40,5 +40,13 @@ export const typeDefs = [
   .filter(Boolean)
 
   // add our GraphQL type defs, as there's no resolver they can attach to
-  .concat([EnvVars, Expense, User, DateTimeScalar, Error, MutationResponse])
+  .concat([
+    EnvVars,
+    Expense,
+    User,
+    DateTimeScalar,
+    Error,
+    MutationResponse,
+    PaginatedListResponse,
+  ])
   .concat(rootSchema);
