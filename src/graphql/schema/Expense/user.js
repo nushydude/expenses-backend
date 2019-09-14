@@ -8,7 +8,7 @@ export async function user(
   args: void,
   ctx: any,
 ): Promise<UserMongooseRecord> {
-  const result = await ctx.db.User.findByID(parent._id);
+  const result = await ctx.db.User.findByID(parent.userID);
 
   invariant(result, 'result should be defined');
 
