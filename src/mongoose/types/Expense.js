@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 export type ExpenseMongooseRecord = {
   _id: mongoose.Schema.Types.ObjectId,
   amount: number,
-  date: string,
+  date: Date,
   paymentMethod: string,
   type: string,
 };

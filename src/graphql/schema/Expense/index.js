@@ -10,7 +10,7 @@ export const Expense = {
 export const typeDef = /* GraphQL */ `
   type Expense {
     amount: Float!
-    date: String!
+    date: DateTime!
     id: ID!
     notes: String
     paymentMethod: String

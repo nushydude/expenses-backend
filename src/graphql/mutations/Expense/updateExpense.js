@@ -84,7 +84,7 @@ updateExpense.typeDef = /* GraphQL */ `
 
   input UpdateExpenseInput {
     amount: Float
-    date: String
+    date: DateTime
     expenseID: ID!
     notes: String
     paymentMethod: String

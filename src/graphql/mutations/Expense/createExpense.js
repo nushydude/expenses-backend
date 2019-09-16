@@ -74,7 +74,7 @@ createExpense.typeDef = /* GraphQL */ `
 
   input CreateExpenseInput {
     amount: Float!
-    date: String!
+    date: DateTime!
     paymentMethod: String!
     type: String!
     notes: String
