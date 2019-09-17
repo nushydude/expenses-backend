@@ -1,5 +1,6 @@
 // @flow
 import { DateTimeScalar } from '@saeris/graphql-scalars';
+import { typeDef as CashFlow } from './schema/CashFlow';
 import { typeDef as EnvVars } from './schema/EnvVars';
 import { typeDef as Expense } from './schema/Expense';
 import { typeDef as User } from './schema/User';
@@ -41,6 +42,7 @@ export const typeDefs = [
 
   // add our GraphQL type defs, as there's no resolver they can attach to
   .concat([
+    CashFlow,
     EnvVars,
     Expense,
     User,
