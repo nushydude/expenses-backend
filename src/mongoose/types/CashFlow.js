@@ -10,5 +10,5 @@ export type ExpenseMongooseRecord = {
   notes?: string,
   source: string,
   type: CashFlowType,
-  userID: mongoose.Schema.Types.ObjectId,,
+  userID: mongoose.Schema.Types.ObjectId,
 };
