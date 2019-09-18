@@ -2,7 +2,7 @@
   "name": "expenses-app",
   "public": false,
   "version": 2,
-  "builds": [{ "src": "dist/main.js", "use": "@now/node@canary" }],
+  "builds": [{ "src": "dist/main.js", "use": "@now/node" }],
   "routes": [{ "src": "/.*", "dest": "dist/main.js" }],
   "regions": ["sfo1"],
   "build": {
