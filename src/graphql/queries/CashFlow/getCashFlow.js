@@ -20,7 +20,7 @@ export async function getCashFlow(
   }
 
   const criteria: any = {
-    _id: mongoose.Types.ObjectId(input.cashFlowID),
+    _id: new mongoose.Types.ObjectId(input.cashFlowID),
     userID: new mongoose.Types.ObjectId(userID),
   };
 

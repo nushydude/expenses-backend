@@ -43,8 +43,8 @@ export async function updateExpense(
   try {
     const expense = await ctx.db.Expense.findOneAndUpdate(
       {
-        _id: mongoose.Types.ObjectId(expenseID),
-        userID: mongoose.Types.ObjectId(userID),
+        _id: new mongoose.Types.ObjectId(expenseID),
+        userID: new mongoose.Types.ObjectId(userID),
       },
       {
         $set: fields,

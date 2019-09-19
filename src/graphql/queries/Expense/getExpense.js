@@ -20,7 +20,7 @@ export async function getExpense(
   }
 
   const criteria: any = {
-    _id: mongoose.Types.ObjectId(input.expenseID),
+    _id: new mongoose.Types.ObjectId(input.expenseID),
     userID: new mongoose.Types.ObjectId(userID),
   };
 

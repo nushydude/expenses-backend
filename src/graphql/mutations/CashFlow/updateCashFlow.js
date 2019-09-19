@@ -45,8 +45,8 @@ export async function updateCashFlow(
   try {
     const cashFlow = await ctx.db.CashFlow.findOneAndUpdate(
       {
-        _id: mongoose.Types.ObjectId(cashFlowID),
-        userID: mongoose.Types.ObjectId(userID),
+        _id: new mongoose.Types.ObjectId(cashFlowID),
+        userID: new mongoose.Types.ObjectId(userID),
       },
       {
         $set: fields,
