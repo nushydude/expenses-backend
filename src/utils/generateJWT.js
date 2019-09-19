@@ -15,7 +15,5 @@ export function generateJWT(user: UserMongooseRecord): string {
     roles: user.roles,
   };
 
-  console.log('payload:', payload);
-
   return jsonwebtoken.sign(payload, env.jwtSecret, CONFIG);
 }

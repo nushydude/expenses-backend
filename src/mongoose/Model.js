@@ -16,7 +16,9 @@ export class Model<Record> {
   loader: any;
   isDiscriminator: boolean = false;
 
-  createDiscriminatorQuery(query: MongooseQuery<any, any>) {
+  createDiscriminatorQuery(
+    query: MongooseQuery<Array<Record>, Record>,
+  ): MongooseQuery<Array<Record>, Record> {
     if (this.isDiscriminator) {
       return { ...query, __t: this.connector.modelName };
     }
@@ -25,14 +27,16 @@ export class Model<Record> {
   }
 
   // escape hatch method that applies any transformatons to our query we'd expect
-  query(query: MongooseQuery<Array<Record>, any>) {
+  query(query: MongooseQuery<Array<Record>, Record>) {
     const transformedQuery = this.createDiscriminatorQuery(query);
 
     return this.connector.find(transformedQuery);
   }
 
   // simple pass through allowing easy extension in a subclass
-  async load(query: MongooseQuery<Array<Record>, any>) {
+  async load(
+    query: MongooseQuery<Array<Record>, Record>,
+  ): Promise<Array<Record>> {
     const transformedQuery = this.createDiscriminatorQuery(query);
 
     const result = await this.loader.load(transformedQuery);
@@ -40,7 +44,9 @@ export class Model<Record> {
     return result;
   }
 
-  async find(query: MongooseQuery<Array<Record>, any>) {
+  async find(
+    query: MongooseQuery<Array<Record>, Record>,
+  ): Promise<Array<Record>> {
     const rawResult = await this.load(query);
 
     const records = rawResult.filter(Boolean);
@@ -48,15 +54,13 @@ export class Model<Record> {
     return records;
   }
 
-  async findOne(query: MongooseQuery<Record, any>) {
+  async findOne(query: MongooseQuery<Array<Record>, Record>): Promise<?Record> {
     const [record] = await this.load(query);
 
     return record;
   }
 
-  async findByID(
-    id: string | mongoose.Types.ObjectId,
-  ): Promise<?MongooseDocument> {
+  async findByID(id: string | mongoose.Types.ObjectId): Promise<?Record> {
     const query = {
       _id: typeof id === 'string' ? new mongoose.Types.ObjectId(id) : id,
     };
@@ -107,7 +111,7 @@ export class Model<Record> {
     return record;
   }
 
-  async findOneAndDelete(criteria: Object) {
+  async findOneAndDelete(criteria: Object): Promise<?Record> {
     const record = await this.connector
       .findOneAndDelete(criteria)
       .lean()
@@ -116,7 +120,7 @@ export class Model<Record> {
     return record;
   }
 
-  async count(criteria: Object) {
+  async count(criteria: Object): Promise<number> {
     const count = await this.connector
       .count(criteria)
       .lean()
