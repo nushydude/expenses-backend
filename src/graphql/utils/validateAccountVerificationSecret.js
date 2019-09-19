@@ -6,5 +6,10 @@ import { CONFIG } from './generateAccountVerificationSecret';
 export function validateAccountVerificationSecret(
   verificationSecret: string,
 ): void {
-  jwt.verify(verificationSecret, env.accountVerificationSecret, CONFIG);
+  const { algorithm, issuer } = CONFIG;
+
+  jwt.verify(verificationSecret, env.accountVerificationSecret, {
+    issuer,
+    algorithms: [algorithm],
+  });
 }

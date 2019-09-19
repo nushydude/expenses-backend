@@ -4,5 +4,10 @@ import { env } from '../../configs/env';
 import { CONFIG } from './generatePasswordResetSecret';
 
 export function validatePasswordResetSecret(verificationSecret: string): void {
-  jwt.verify(verificationSecret, env.passwordResetSecret, CONFIG);
+  const { algorithm, issuer } = CONFIG;
+
+  jwt.verify(verificationSecret, env.passwordResetSecret, {
+    issuer,
+    algorithms: [algorithm],
+  });
 }
