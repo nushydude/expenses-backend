@@ -7,4 +7,5 @@ export type ExpenseMongooseRecord = {
   date: Date,
   paymentMethod: string,
   type: string,
+  userID: mongoose.Schema.Types.ObjectId,
 };

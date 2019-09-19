@@ -1,5 +1,6 @@
 // @flow
 import { ForbiddenError } from 'apollo-server-micro';
+import { env } from '../../../configs/env';
 import { isAdmin } from '../../../utils/isAdmin';
 
 export function getEnvVars(root: any, args: any, ctx: any): any {
@@ -7,7 +8,7 @@ export function getEnvVars(root: any, args: any, ctx: any): any {
     throw new ForbiddenError();
   }
 
-  return process.env;
+  return env;
 }
 
 getEnvVars.typeDef = /* GraphQL */ `

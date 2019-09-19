@@ -1,8 +1,9 @@
 // @flow
 import { Model } from '../Model';
 import { generateAccountVerificationSecret } from '../../graphql/utils/generateAccountVerificationSecret';
+import type { UserMongooseRecord } from '../types/User';
 
-export class UserModel extends Model {
+export class UserModel extends Model<UserMongooseRecord> {
   async create(userDoc) {
     let user = await this.connector.create(userDoc);
 

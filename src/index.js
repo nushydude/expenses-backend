@@ -8,14 +8,15 @@ import { connect as mongooseConnect } from './mongoose/connect';
 import sgMail from '@sendgrid/mail';
 import * as Sentry from '@sentry/node';
 import { verifyJWT } from './utils/verifiyJWT';
+import { env } from './configs/env';
 
-Sentry.init({ dsn: process.env.SENTRY_DSN });
+Sentry.init({ dsn: env.sentryDSN });
 
 // connect to mongoose
 mongooseConnect();
 
 // setup emailing service
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(env.sendgridApiKey);
 
 // install password hashing algorithm
 if (!upash.list().includes('argon2')) {

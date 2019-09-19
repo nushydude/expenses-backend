@@ -1,8 +1,9 @@
 // @flow
 import { model, models, Schema } from 'mongoose';
 import { ROLE } from '../../enums/role';
+import type { UserMongooseRecord } from '../types/User';
 
-export const schema = new Schema(
+export const schema = new Schema<UserMongooseRecord>(
   {
     email: { type: String, required: true, unique: true },
     passwordHash: { type: String },

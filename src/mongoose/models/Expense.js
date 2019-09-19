@@ -1,8 +1,9 @@
 // @flow
 import mongoose from 'mongoose';
 import { Model } from '../Model';
+import type { ExpenseMongooseRecord } from '../types/Expense';
 
-export class ExpenseModel extends Model {
+export class ExpenseModel extends Model<ExpenseMongooseRecord> {
   async create(expense: any) {
     const { userID, ...fields } = expense;
 

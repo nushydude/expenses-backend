@@ -1,6 +1,7 @@
 // @flow
 import invariant from 'invariant';
 import sgMail from '@sendgrid/mail';
+import { env } from '../../configs/env';
 import { EMAIL_ADDRESS } from '../../enums/emailAddress';
 import { EMAIL_CATEGORY } from '../../enums/emailCategory';
 import type { UserMongooseRecord } from '../../mongoose/types/User';
@@ -21,7 +22,7 @@ export function emailPasswordResetLink(
     to: user.email,
     substitutions: {
       // $FlowFixMe
-      link: `${process.env.PASSWORD_RESET_URL}?secret=${user.resetPasswordSecret}`,
+      link: `${env.passwordResetURL}?secret=${user.resetPasswordSecret}`,
       name: user.name || 'there',
     },
     text: resetPasswordEmailTemplate,

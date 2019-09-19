@@ -2,7 +2,7 @@
 import mongoose from 'mongoose';
 import type { CashFlowType } from '../../enums/cashFlowType';
 
-export type ExpenseMongooseRecord = {
+export type CashFlowMongooseRecord = {
   _id: mongoose.Schema.Types.ObjectId,
   amount: number,
   category: string,

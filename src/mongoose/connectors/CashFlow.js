@@ -1,8 +1,9 @@
 // @flow
 import { model, models, Schema } from 'mongoose';
 import { CASH_FLOW_TYPE } from '../../enums/cashFlowType';
+import type { CashFlowMongooseRecord } from '../types/CashFlow';
 
-export const schema = new Schema({
+export const schema = new Schema<CashFlowMongooseRecord>({
   amount: { type: Number, required: true },
   date: { type: Date, required: true, index: true },
   notes: { type: String },

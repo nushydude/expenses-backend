@@ -14,11 +14,17 @@ type GetIncomesArgs = {
   },
 };
 
+type GetIncomesResponse = {
+  totalPages: number,
+  totalRecordsCount: number,
+  incomes: Array<CashFlowMongooseRecord>,
+};
+
 export async function getIncomes(
   _: void,
   { input }: GetIncomesArgs,
   ctx: any,
-): Promise<Array<CashFlowMongooseRecord>> {
+): Promise<GetIncomesResponse> {
   const userID = ctx.user?.id;
 
   if (!userID) {

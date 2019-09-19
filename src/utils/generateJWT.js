@@ -1,11 +1,12 @@
 // @flow
 import jsonwebtoken from 'jsonwebtoken';
+import { env } from '../configs/env';
 import type { UserMongooseRecord } from '../mongoose/types/User';
 
 export const CONFIG = {
   algorithm: 'HS256',
   expiresIn: '30d',
-  issuer: process.env.JWT_ISSUER,
+  issuer: env.jwtIssuer,
 };
 
 export function generateJWT(user: UserMongooseRecord): string {
@@ -16,5 +17,5 @@ export function generateJWT(user: UserMongooseRecord): string {
 
   console.log('payload:', payload);
 
-  return jsonwebtoken.sign(payload, process.env.JWT_SECRET, CONFIG);
+  return jsonwebtoken.sign(payload, env.jwtSecret, CONFIG);
 }

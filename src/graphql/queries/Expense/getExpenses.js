@@ -13,11 +13,17 @@ type GetExpensesArgs = {
   },
 };
 
+type GetExpensesResponse = {
+  totalPages: number,
+  totalRecordsCount: number,
+  expenses: Array<ExpenseMongooseRecord>,
+};
+
 export async function getExpenses(
   _: void,
   { input }: GetExpensesArgs,
   ctx: any,
-): Promise<Array<ExpenseMongooseRecord>> {
+): Promise<GetExpensesResponse> {
   const userID = ctx.user?.id;
 
   if (!userID) {

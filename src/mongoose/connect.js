@@ -1,6 +1,7 @@
 // @flow
 import mongoose from 'mongoose';
 import { handleConnectionError } from './handleConnectionError';
+import { env } from '../configs/env';
 import { logger } from '../utils/logger';
 
 export async function connect(): Promise<void> {
@@ -10,14 +11,14 @@ export async function connect(): Promise<void> {
   }
 
   try {
-    mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
+    mongoose.connect(env.mongoDBConnectionString, {
       useNewUrlParser: true,
       readPreference: 'nearest',
     });
 
     mongoose.connection.on('error', handleConnectionError);
 
-    mongoose.set('debug', process.env.NODE_ENV === 'development');
+    mongoose.set('debug', env.isDev);
   } catch (error) {
     logger.error('Mongoose connect error:', error);
 

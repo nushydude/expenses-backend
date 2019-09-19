@@ -1,10 +1,10 @@
 // @flow
 import invariant from 'invariant';
-import type { ExpenseMongooseRecord } from '../../../mongoose/types/Expense';
+import type { CashFlowMongooseRecord } from '../../../mongoose/types/CashFlow';
 import type { UserMongooseRecord } from '../../../mongoose/types/User';
 
 export async function user(
-  parent: ExpenseMongooseRecord,
+  parent: CashFlowMongooseRecord,
   args: void,
   ctx: any,
 ): Promise<UserMongooseRecord> {

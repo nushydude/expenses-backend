@@ -12,7 +12,7 @@ export async function getCashFlow(
   _: void,
   { input }: GetCashFlowArgs,
   ctx: any,
-): Promise<CashFlowMongooseRecord> {
+): Promise<?CashFlowMongooseRecord> {
   const userID = ctx.user?.id;
 
   if (!userID) {

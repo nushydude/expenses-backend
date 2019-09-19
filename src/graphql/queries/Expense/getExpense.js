@@ -12,7 +12,7 @@ export async function getExpense(
   _: void,
   { input }: GetExpenseArgs,
   ctx: any,
-): Promise<ExpenseMongooseRecord> {
+): Promise<?ExpenseMongooseRecord> {
   const userID = ctx.user?.id;
 
   if (!userID) {
