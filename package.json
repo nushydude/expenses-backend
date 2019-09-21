@@ -61,6 +61,7 @@
   "scripts": {
     "now-build": "webpack --log-level=debug",
     "build": "webpack --log-level=debug",
-    "start": "babel-node node_modules/micro-dev/bin/micro-dev.js src --watch src"
+    "start": "babel-node node_modules/micro-dev/bin/micro-dev.js src --watch src",
+    "lint": "eslint ./src --quiet"
   }
 }
