@@ -1,4 +1,5 @@
 // @flow
+// $FlowFixMe - models not defined in types
 import { model, models, Schema } from 'mongoose';
 import type { Model } from 'mongoose';
 import { ROLE } from '../../enums/role';
