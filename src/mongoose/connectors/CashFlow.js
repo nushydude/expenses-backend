@@ -1,5 +1,6 @@
 // @flow
 import { model, models, Schema } from 'mongoose';
+import type { Model } from 'mongoose';
 import { CASH_FLOW_TYPE } from '../../enums/cashFlowType';
 import type { CashFlowMongooseRecord } from '../types/CashFlow';
 

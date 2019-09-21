@@ -3,8 +3,8 @@ import sift from 'sift';
 
 // generates our batch loader function for plugging into a DataLoader, running
 // the queries against the provided mongoose model
-export function createMongooseBatchLoader(connector) {
-  async function batchLoadQueries(queries) {
+export function createMongooseBatchLoader(connector: any) {
+  async function batchLoadQueries(queries: any) {
     // use the $or operator to combine all of our queries into a single DB op
     const query = connector.find({ $or: queries });
 

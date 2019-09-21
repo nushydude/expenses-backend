@@ -1,5 +1,6 @@
 // @flow
 import { model, models, Schema } from 'mongoose';
+import type { Model } from 'mongoose';
 import type { ExpenseMongooseRecord } from '../types/Expense';
 
 export const schema = new Schema<ExpenseMongooseRecord>({

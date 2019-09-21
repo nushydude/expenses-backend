@@ -6,8 +6,10 @@ import { ExpenseModel } from './models/Expense';
 import { UserConnector } from './connectors/User';
 import { UserModel } from './models/User';
 
-export const createContextModels = () => ({
-  CashFlow: new CashFlowModel({ connector: CashFlowConnector }),
-  Expense: new ExpenseModel({ connector: ExpenseConnector }),
-  User: new UserModel({ connector: UserConnector }),
-});
+export function createContextModels() {
+  return {
+    CashFlow: new CashFlowModel({ connector: CashFlowConnector }),
+    Expense: new ExpenseModel({ connector: ExpenseConnector }),
+    User: new UserModel({ connector: UserConnector }),
+  };
+}

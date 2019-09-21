@@ -1,5 +1,6 @@
 // @flow
 import { model, models, Schema } from 'mongoose';
+import type { Model } from 'mongoose';
 import { ROLE } from '../../enums/role';
 import type { UserMongooseRecord } from '../types/User';
 
