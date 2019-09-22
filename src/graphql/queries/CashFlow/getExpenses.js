@@ -65,7 +65,8 @@ export async function getExpenses(
     ctx.db.CashFlow.query(criteria)
       .skip(skip)
       .limit(limit)
-      .lean(),
+      .lean()
+      .sort({ date: 1 }),
     ctx.db.CashFlow.count(criteria),
   ]);
 
