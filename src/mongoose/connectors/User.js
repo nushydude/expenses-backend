@@ -29,9 +29,6 @@ export const schema = new Schema<UserMongooseRecord>(
     verified: { type: Boolean, default: false },
     verificationSecret: { type: String },
     resetPasswordSecret: { type: String },
-
-    types: { type: [String], default: [] },
-    paymentMethods: { type: [String], default: [] },
   },
   {
     timestamps: true,

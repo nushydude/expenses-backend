@@ -6,8 +6,8 @@ type CreateCashFlowArgs = {
   input: {
     amount: number,
     date: string,
-    paymentMethod: string,
-    type: string,
+    source: string,
+    category: string,
     notes?: string,
   },
 };
@@ -39,23 +39,10 @@ export async function createCashFlow(
     // TODO:
     // this should be a transaction
 
-    // create the cashFlow
     const cashFlow = await ctx.db.CashFlow.create({ ...input, userID });
-
-    const { type, paymentMethod } = input;
-
-    // add the type and payment method to the user acccount
-    await ctx.db.User.findByIDAndUpdate(userID, {
-      $addToSet: {
-        types: type,
-        paymentMethods: paymentMethod,
-      },
-    });
 
     return { cashFlow, error: null };
   } catch (error) {
-    console.log('error:', error.message);
-
     Sentry.captureException(error);
 
     return {
