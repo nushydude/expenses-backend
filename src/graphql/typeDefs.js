@@ -2,7 +2,6 @@
 import { DateTimeScalar } from '@saeris/graphql-scalars';
 import { typeDef as CashFlow } from './schema/CashFlow';
 import { typeDef as EnvVars } from './schema/EnvVars';
-import { typeDef as Expense } from './schema/Expense';
 import { typeDef as User } from './schema/User';
 import { Error, MutationResponse, PaginatedListResponse } from './helpers';
 import { rootMutation } from './rootMutation';
@@ -44,7 +43,6 @@ export const typeDefs = [
   .concat([
     CashFlow,
     EnvVars,
-    Expense,
     User,
     DateTimeScalar,
     Error,
