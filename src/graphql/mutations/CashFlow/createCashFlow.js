@@ -36,9 +36,6 @@ export async function createCashFlow(
   }
 
   try {
-    // TODO:
-    // this should be a transaction
-
     const cashFlow = await ctx.db.CashFlow.create({ ...input, userID });
 
     return { cashFlow, error: null };

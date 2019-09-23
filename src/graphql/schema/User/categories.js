@@ -12,7 +12,7 @@ export async function categories(
     .select('category')
     .lean();
 
-  const results = [...new Set(expenses.map(e => e.category))];
+  const results = [...new Set(expenses.map(e => e.category))].sort();
 
   return results;
 }

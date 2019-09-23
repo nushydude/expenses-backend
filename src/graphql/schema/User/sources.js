@@ -12,7 +12,7 @@ export async function sources(
     .select('source')
     .lean();
 
-  const results = [...new Set(expenses.map(e => e.source))];
+  const results = [...new Set(expenses.map(e => e.source))].sort();
 
   return results;
 }
