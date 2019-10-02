@@ -5,7 +5,7 @@ export async function categories(
   parent: UserMongooseRecord,
   args: any,
   ctx: any,
-): Array<string> {
+): Promise<Array<string>> {
   const userID = parent._id;
 
   const expenses = await ctx.db.CashFlow.query({ userID })
