@@ -6,7 +6,7 @@ import { typeDefs } from './typeDefs';
 
 const server = new ApolloServer({
   context: createContext,
-  cors: false,
+  // cors: false,
   introspection: true,
   playground: true,
   resolvers,
