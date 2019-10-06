@@ -12,4 +12,4 @@ const server = new ApolloServer({
   typeDefs,
 });
 
-export const createHandler = () => server.createHandler();
+export const handleGraphQLRequest = server.createHandler();
