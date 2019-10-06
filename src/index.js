@@ -36,10 +36,10 @@ export default cors({
     'apollographql-client-version',
   ],
 })((req, res) => {
-  // if (req.method === 'OPTIONS') {
-  //   res.end();
-  //   return;
-  // }
+  if (req.method === 'OPTIONS') {
+    res.end();
+    return;
+  }
 
   const jwt = req.headers.authorization;
   if (jwt) {
