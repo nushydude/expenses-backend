@@ -52,6 +52,9 @@ export default cors({
 
   console.log('before create handler');
 
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+
   // eslint-disable-next-line consistent-return
   return createHandler()(req, res);
 });
