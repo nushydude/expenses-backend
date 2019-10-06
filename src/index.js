@@ -50,6 +50,8 @@ export default cors({
     }
   }
 
+  console.log('before create handler');
+
   // eslint-disable-next-line consistent-return
   return createHandler()(req, res);
 });
