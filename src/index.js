@@ -36,10 +36,10 @@ export default cors({
     'apollographql-client-version',
   ],
 })((req, res) => {
-  if (req.method === 'OPTIONS') {
-    res.end();
-    return;
-  }
+  // if (req.method === 'OPTIONS') {
+  //   res.end();
+  //   return;
+  // }
 
   const jwt = req.headers.authorization;
   if (jwt) {
@@ -49,11 +49,6 @@ export default cors({
       throw createError(401, 'Invalid JWT');
     }
   }
-
-  console.log('before create handler');
-
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
 
   // eslint-disable-next-line consistent-return
   return createHandler()(req, res);
