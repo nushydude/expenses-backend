@@ -6,11 +6,10 @@ import { typeDefs } from './typeDefs';
 
 const server = new ApolloServer({
   context: createContext,
-  cors: false,
   introspection: true,
   playground: true,
   resolvers,
   typeDefs,
 });
 
-export const createHandler = () => server.createHandler();
+export const handleGraphQLRequest = server.createHandler();
