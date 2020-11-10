@@ -42,6 +42,7 @@ export default cors({
   }
 
   const jwt = req.headers.authorization;
+
   if (jwt) {
     try {
       verifyJWT(jwt);
@@ -52,8 +53,8 @@ export default cors({
 
   console.log('before create handler');
 
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
+  // res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Headers', '*');
 
   // eslint-disable-next-line consistent-return
   return createHandler()(req, res);
