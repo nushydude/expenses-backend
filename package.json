@@ -53,7 +53,7 @@
     "prettier-eslint": "9.0.0"
   },
   "engines": {
-    "node": "13.x"
+    "node": "14.x"
   },
   "main": "dist/index.js",
   "name": "expenses-app-api",
