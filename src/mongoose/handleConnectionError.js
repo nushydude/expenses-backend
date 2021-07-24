@@ -1,4 +1,6 @@
 // @flow
+import * as Sentry from '@sentry/node';
+
 export function handleConnectionError(error: Error): void {
-  console.log('handleConnectionError:', error.message);
+  Sentry.captureException(error);
 }
