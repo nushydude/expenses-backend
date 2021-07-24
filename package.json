@@ -1,6 +1,19 @@
 {
   "author": "Anusha Dharmasena",
   "license": "MIT",
+  "name": "expenses-app-api",
+  "version": "1.1.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "now-build": "webpack",
+    "build": "webpack",
+    "start": "babel-node node_modules/micro-dev/bin/micro-dev.js src --watch src",
+    "lint": "eslint ./src --quiet"
+  },
+  "engines": {
+    "node": "14.x",
+    "yarn": "1.22.x"
+  },
   "dependencies": {
     "@phc/argon2": "1.0.9",
     "@saeris/graphql-scalars": "2.1.1",
@@ -48,18 +61,5 @@
     "happypack": "5.0.1",
     "prettier": "1.18.2",
     "prettier-eslint": "9.0.0"
-  },
-  "engines": {
-    "node": "14.x",
-    "yarn": "1.22.x"
-  },
-  "main": "dist/index.js",
-  "name": "expenses-app-api",
-  "version": "1.0.0",
-  "scripts": {
-    "now-build": "webpack --log-level=debug",
-    "build": "webpack --log-level=debug",
-    "start": "babel-node node_modules/micro-dev/bin/micro-dev.js src --watch src",
-    "lint": "eslint ./src --quiet"
   }
 }

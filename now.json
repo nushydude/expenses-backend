@@ -13,6 +13,7 @@
   "env": {
     "SECRET": "@my-top-secret",
     "MONGODB_CONNECTION_STRING": "@mongo-connection-string",
+    "MONGODB_CONNECTION_STRING_TEST": "@mongo-connection-string-test",
     "JWT_SECRET": "@jwt-secret",
     "ACCOUNT_VERIFICATION_SECRET": "@account-verification-secret",
     "PASSWORD_RESET_SECRET": "@password-reset-secret",

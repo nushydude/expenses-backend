@@ -6,6 +6,7 @@ const accountVerificationURL = process.env.ACCOUNT_VERIFICATION_URL;
 const jwtIssuer = process.env.JWT_ISSUER;
 const jwtSecret = process.env.JWT_SECRET;
 const mongoDBConnectionString = process.env.MONGODB_CONNECTION_STRING;
+const mongoDBConnectionStringTest = process.env.MONGODB_CONNECTION_STRING_TEST;
 const nodeEnv = process.env.NODE_ENV;
 const passwordResetSecret = process.env.PASSWORD_RESET_SECRET;
 const passwordResetURL = process.env.PASSWORD_RESET_URL;
@@ -31,6 +32,10 @@ invariant(sendgridApiKey, 'SENDGRID_API_KEY env var should be defined');
 invariant(
   mongoDBConnectionString,
   'MONGODB_CONNECTION_STRING env var should be defined',
+);
+invariant(
+  mongoDBConnectionStringTest,
+  'MONGODB_CONNECTION_STRING_TEST env var should be defined',
 );
 invariant(nodeEnv, 'NODE_ENV env var should be defined');
 invariant(jwtSecret, 'JWT_SECRET env var should be defined');
