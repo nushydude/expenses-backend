@@ -45,6 +45,7 @@
     "eslint-plugin-prettier": "3.1.4",
     "faker": "4.1.0",
     "flow-bin": "0.107.0",
+    "happypack": "5.0.1",
     "prettier": "1.18.2",
     "prettier-eslint": "9.0.0"
   },
