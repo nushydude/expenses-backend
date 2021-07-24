@@ -3,7 +3,7 @@ import argon2 from '@phc/argon2';
 import cors from 'micro-cors';
 import { createError } from 'micro';
 import upash from 'upash';
-import { createHandler } from './graphql/createHandler';
+import { handleGraphQLRequest } from './graphql/handleGraphQLRequest';
 import { connect as mongooseConnect } from './mongoose/connect';
 import sgMail from '@sendgrid/mail';
 import * as Sentry from '@sentry/node';
@@ -42,7 +42,6 @@ export default cors({
   }
 
   const jwt = req.headers.authorization;
-
   if (jwt) {
     try {
       verifyJWT(jwt);
@@ -51,11 +50,6 @@ export default cors({
     }
   }
 
-  console.log('before create handler');
-
-  // res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Headers', '*');
-
   // eslint-disable-next-line consistent-return
-  return createHandler()(req, res);
+  return handleGraphQLRequest(req, res);
 });
