@@ -1,6 +1,6 @@
 {
   "author": "Anusha Dharmasena",
-  "license": "MIT license",
+  "license": "MIT",
   "dependencies": {
     "@phc/argon2": "1.0.9",
     "@saeris/graphql-scalars": "2.1.1",
