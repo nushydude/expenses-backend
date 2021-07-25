@@ -1,5 +1,4 @@
 // @flow
-import * as Sentry from '@sentry/node';
 import upash from 'upash';
 import { isEmail } from 'validator';
 import { isMongoDBConflictError } from '../../../errors/matchers/isMongoDBConflictError';
@@ -92,12 +91,10 @@ export async function signUpWithEmail(
       };
     }
 
-    Sentry.captureException(error);
-
     return {
       created: false,
       jwt: null,
-      error: createUnknownError(ctx),
+      error: createUnkn0ownError(error, ctx),
     };
   }
 }
