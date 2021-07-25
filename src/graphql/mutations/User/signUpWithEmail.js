@@ -5,7 +5,12 @@ import { isEmail } from 'validator';
 import { isMongoDBConflictError } from '../../../errors/matchers/isMongoDBConflictError';
 import type { UserMongooseRecord } from '../../../mongoose/types/User';
 import { generateJWT } from '../../../utils/generateJWT';
+import { createDuplicateAccountError } from '../../errors/createDuplicateAccountError';
+import { createInvalidEmailError } from '../../errors/createInvalidEmailError';
+import { createPasswordTooShortError } from '../../errors/createPasswordTooShortError';
+import { createUnknownError } from '../../errors/createUnknownError';
 import { emailAccountVerificationLink } from '../../utils/emailAccountVerificationLink';
+import type { ErrorCode } from '../../errors/types';
 
 type SignUpWithEmailArgs = {
   input: {
@@ -20,6 +25,7 @@ type SignUpWithEmailResponse = {
   created: boolean,
   jwt: ?String,
   error: ?{
+    code: ErrorCode,
     message: string,
   },
 };
@@ -35,7 +41,7 @@ export async function signUpWithEmail(
     return {
       created: false,
       jwt: null,
-      error: { message: 'Provided email is not an email' },
+      error: createInvalidEmailError(ctx),
     };
   }
 
@@ -43,7 +49,7 @@ export async function signUpWithEmail(
     return {
       created: false,
       jwt: null,
-      error: { message: 'Provided password is too short' },
+      error: createPasswordTooShortError(ctx),
     };
   }
 
@@ -79,15 +85,10 @@ export async function signUpWithEmail(
 
     return { created: true, jwt, error: null };
   } catch (error) {
-    console.log('error:', error);
-
     if (isMongoDBConflictError(error)) {
       return {
         created: false,
-        error: {
-          message:
-            'An account with the same email exists. Please log in instead.',
-        },
+        error: createDuplicateAccountError(ctx),
       };
     }
 
@@ -96,9 +97,7 @@ export async function signUpWithEmail(
     return {
       created: false,
       jwt: null,
-      error: {
-        message: 'Unknown error',
-      },
+      error: createUnknownError(ctx),
     };
   }
 }

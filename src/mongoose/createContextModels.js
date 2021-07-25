@@ -6,7 +6,13 @@ import { ExpenseModel } from './models/Expense';
 import { UserConnector } from './connectors/User';
 import { UserModel } from './models/User';
 
-export function createContextModels() {
+export type ContextModels = {
+  CashFlow: CashFlowModel,
+  Expense: ExpenseModel,
+  User: UserModel,
+};
+
+export function createContextModels(): ContextModels {
   return {
     CashFlow: new CashFlowModel({ connector: CashFlowConnector }),
     Expense: new ExpenseModel({ connector: ExpenseConnector }),

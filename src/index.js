@@ -33,6 +33,7 @@ export default cors({
     'Authorization',
     'Accept',
     'apollographql-client-version',
+    'x-lang',
   ],
 })((req, res) => {
   if (req.method === 'OPTIONS') {
