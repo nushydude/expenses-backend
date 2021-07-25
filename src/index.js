@@ -7,7 +7,6 @@ import { handleGraphQLRequest } from './graphql/handleGraphQLRequest';
 import { connect as mongooseConnect } from './mongoose/connect';
 import sgMail from '@sendgrid/mail';
 import * as Sentry from '@sentry/node';
-import { verifyJWT } from './utils/verifiyJWT';
 import { env } from './configs/env';
 
 Sentry.init({ dsn: env.sentryDSN });
@@ -39,15 +38,6 @@ export default cors({
   if (req.method === 'OPTIONS') {
     res.end();
     return;
-  }
-
-  const jwt = req.headers.authorization;
-  if (jwt) {
-    try {
-      verifyJWT(jwt);
-    } catch (error) {
-      throw createError(401, 'Invalid JWT');
-    }
   }
 
   // eslint-disable-next-line consistent-return

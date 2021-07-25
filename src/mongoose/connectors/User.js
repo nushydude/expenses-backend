@@ -27,8 +27,8 @@ export const schema = new Schema<UserMongooseRecord>(
     passwordChangedAt: { type: Date },
 
     verified: { type: Boolean, default: false },
-    verificationSecret: { type: String },
-    resetPasswordSecret: { type: String },
+
+    requiresReauth: { type: Boolean, default: false },
   },
   {
     timestamps: true,

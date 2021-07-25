@@ -8,7 +8,7 @@ type User = {
 };
 
 export function getUserByJWT(jwt: string): User {
-  const { userID, roles } = jsonwebtoken.decode(jwt);
+  const { userID, roles } = jsonwebtoken.verify(jwt);
 
   return { id: userID, roles };
 }

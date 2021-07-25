@@ -5,30 +5,51 @@ import { env } from '../../configs/env';
 import { EMAIL_ADDRESS } from '../../enums/emailAddress';
 import { EMAIL_CATEGORY } from '../../enums/emailCategory';
 import type { UserMongooseRecord } from '../../mongoose/types/User';
+import { generateAccountVerificationSecret } from './generateAccountVerificationSecret';
 
-export function emailAccountVerificationLink(
-  user: UserMongooseRecord,
-): Promise<void> {
-  invariant(
-    user.email && user.verificationSecret,
-    'user.email and user.verificationSecret should be defined',
-  );
+type User = {
+  id: string,
+  email: string,
+  name: string,
+};
 
-  return sgMail.send({
-    from: {
-      name: 'Expenses App',
-      email: EMAIL_ADDRESS.NO_REPLY,
-    },
-    to: user.email,
-    substitutions: {
-      // $FlowFixMe
-      link: `${env.accountVerificationURL}?secret=${user.verificationSecret}`,
-      name: user.name || 'there',
-    },
-    text: verifyAccountTemplate,
-    subject: 'Expenses App Account Verification',
-    categories: [EMAIL_CATEGORY.VERIFY_ACCOUNT],
-  });
+type Result = {
+  sent: boolean,
+  secret: string,
+};
+
+export async function emailAccountVerificationLink(
+  user: User,
+): Promise<Result> {
+  invariant(user.email, 'user.email should be defined');
+
+  const secret = generateAccountVerificationSecret(user);
+
+  let sent = false;
+
+  try {
+    await sgMail.send({
+      from: {
+        name: 'Expenses App',
+        email: EMAIL_ADDRESS.NO_REPLY,
+      },
+      to: user.email,
+      substitutions: {
+        // $FlowFixMe
+        link: `${env.accountVerificationURL}?secret=${secret}`,
+        name: user.name,
+      },
+      text: verifyAccountTemplate,
+      subject: 'Expenses App Account Verification',
+      categories: [EMAIL_CATEGORY.VERIFY_ACCOUNT],
+    });
+
+    sent = true;
+  } catch (error) {
+    sent = false;
+  }
+
+  return { secret, sent };
 }
 
 const verifyAccountTemplate = `

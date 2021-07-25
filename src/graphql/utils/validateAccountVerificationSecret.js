@@ -5,11 +5,17 @@ import { CONFIG } from './generateAccountVerificationSecret';
 
 export function validateAccountVerificationSecret(
   verificationSecret: string,
-): void {
+): ?string {
   const { algorithm, issuer } = CONFIG;
 
-  jwt.verify(verificationSecret, env.accountVerificationSecret, {
-    issuer,
-    algorithms: [algorithm],
-  });
+  const decoded = jwt.verify(
+    verificationSecret,
+    env.accountVerificationSecret,
+    {
+      issuer,
+      algorithms: [algorithm],
+    },
+  );
+
+  return decoded?.userID;
 }

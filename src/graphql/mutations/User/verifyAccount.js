@@ -24,19 +24,31 @@ export async function verifyAccount(
   const { verificationSecret } = input;
 
   try {
-    validateAccountVerificationSecret(verificationSecret);
+    // verify the secret
+    const userID = validateAccountVerificationSecret(verificationSecret);
 
-    let user = await ctx.db.User.findOne({ verificationSecret }, ctx);
+    if (!userID) {
+      return {
+        verified: false,
+        error: {
+          message: 'Unable to verify the account. Please try again.',
+        },
+      };
+    }
+
+    // query the user with the userID extracted from the secret
+    let user = await ctx.db.User.findByID(userID, ctx);
 
     if (!user) {
       return {
         verified: false,
         error: {
-          message: 'The account you are trying to verify cannot be found',
+          message: 'The account you are trying to verify does not exist',
         },
       };
     }
 
+    // don't complain if the user is already verified. just pass.
     if (user.verified) {
       return { verified: true, error: null };
     }
@@ -45,12 +57,13 @@ export async function verifyAccount(
       user._id,
       {
         $set: { verified: true },
-        $unset: { verificationSecret: true },
       },
       ctx,
     );
 
-    invariant(user, 'user should be defined');
+    if (!user) {
+      throw new Error('Setting verified flag on the user account failed.');
+    }
 
     return { verified: user.verified, error: null };
   } catch (error) {

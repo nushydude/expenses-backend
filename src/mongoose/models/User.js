@@ -4,14 +4,8 @@ import { generateAccountVerificationSecret } from '../../graphql/utils/generateA
 import type { UserMongooseRecord } from '../types/User';
 
 export class UserModel extends Model<UserMongooseRecord> {
-  async create(userDoc: UserMongooseRecord) {
-    let user = await this.connector.create(userDoc);
-
-    user = await this.findByIDAndUpdate(user._id, {
-      $set: {
-        verificationSecret: generateAccountVerificationSecret(user),
-      },
-    });
+  async create(userDoc: $Shape<UserMongooseRecord>) {
+    const user = await this.connector.create(userDoc);
 
     return user;
   }

@@ -9,8 +9,7 @@ export type UserMongooseRecord = {
   name: string,
   roles: Array<Role>,
   lastLoggedInAt?: Date,
-  passwordChangedAt: Date,
+  passwordChangedAt?: Date,
   verified: boolean,
-  verificationSecret?: string,
-  resetPasswordSecret?: string,
+  requiresReauth?: Boolean,
 };

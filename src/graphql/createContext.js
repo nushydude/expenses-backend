@@ -2,6 +2,7 @@
 import { getUserByJWT } from '../utils/getUserByJWT';
 import { createContextModels } from '../mongoose/createContextModels';
 import type { Role } from '../enums/role';
+import { verifyJWT } from '../utils/verifyJWT';
 
 export type GraphQLContext = {
   db: any,
@@ -17,7 +18,7 @@ export const createContext = async ({ req }: any): Promise<GraphQLContext> => {
   let user;
 
   if (jwt) {
-    user = await getUserByJWT(req.headers.authorization);
+    user = verifyJWT(jwt);
   }
 
   return {
