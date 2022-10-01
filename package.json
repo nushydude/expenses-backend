@@ -8,7 +8,7 @@
     "@sentry/node": "5.27.3",
     "apollo-server-micro": "2.19.0",
     "dataloader": "1.4.0",
-    "fast-json-stable-stringify": "2.0.0",
+    "fast-json-stable-stringify": "2.1.0",
     "invariant": "2.2.4",
     "jsonwebtoken": "8.5.1",
     "micro": "9.3.4",
@@ -50,12 +50,12 @@
     "prettier-eslint": "9.0.0"
   },
   "engines": {
-    "node": "14.x",
+    "node": "16.x",
     "yarn": "1.22.x"
   },
   "main": "dist/index.js",
   "name": "expenses-app-api",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "scripts": {
     "now-build": "webpack --log-level=debug",
     "build": "webpack --log-level=debug",
